@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxxo Cars </title>
+        <link rel="icon" type="image/png" href="../img/car.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<style>
+     body{
+            margin: 0;
+            background-color: rgba(0,0,0,0.9); 
+            
+            
+        }
+        
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 97%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 30px;
+        background-color: rgba(0,0,0,0.7);  
+        z-index: 1000; 
+    }
+
+    .header img{
+        height: 70px;
+    }
+    .header .menu{
+        
+        display: flex;
+        align-items: center;
+        gap: 25px;
+        font-family: Arial, Helvetica, sans-serif;
+        
+    }
+    .header a{
+
+        text-decoration: none;
+        color: grey;
+        font-size: 16px;
+    }
+    a:hover{
+    color: #DAA520;
+    }
+    a.K{
+        color: #DAA520;
+    }
+    .hero {
+        background-image: url('../img/banner.avif'); 
+        background-size: cover;    
+        
+        height: 600px;             
+        display: flex;
+        flex-direction: column;
+        justify-content: center;    
+        align-items: center;        
+        color: white;              
+        text-align: center;
+        position: relative;
+    }
+
+    .hero::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background-color: rgba(0,0,0,0.7); 
+        z-index: 1;
+    }
+
+    .hero h1, .hero p {
+        position: relative;
+        z-index: 2; 
+    }
+    .bannertext{
+        font-size: 60px;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+    }
+
+    .bannertext1{
+        font-size: 30px;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        text-decoration: underline;
+    }
+    .mesi {
+        
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    border-radius: 20px;
+    border: 1.5px solid #DAA520;
+    width: 90%;
+    margin: 100px auto;
+    padding: 20px;
+}
+
+    #rrethi,#h4{
+        padding: 10px;
+        color: white;
+        font-family: 'Times New Roman', Times, serif;
+        font-style: italic;
+        font-size: 20px;
+    }
+    #h4{
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+    }
+    .hero1 {
+    width: 100%;
+    height: 350px;
+    background-image: url('../img/lambo.jpg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+    .hero1::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background-color: rgba(0,0,0,0.7); 
+        z-index: 1;
+    }
+
+    .hero1 h1, .hero1 p {
+        position: relative;
+        z-index: 2; 
+    }
+    #maki:hover{
+        color: #DAA520;
+        text-decoration: none;
+    }
+    #maki{
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        color: white;
+    }
+    .k {
+    width: 90%;
+    margin: 0 auto 100px auto;
+    padding: 30px;
+    border: 1.5px solid white;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.ipari, .itreti {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 15px;
+    padding: 15px;
+    border: 1px solid white;
+    border-radius: 12px;
+}
+.ipari p, .itreti p{
+    font-weight: bold;
+}
+.footer {
+    margin-top: 0;
+    background-image: url("../img/shfletoo.jpg");
+    background-size: cover;
+    background-position: center;
+    padding: 50px 0;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.social-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 90%;
+    margin: auto;
+    border-top: 2px solid #ffffff22;
+    border-bottom: 2px solid #ffffff22;
+    padding: 30px 0;
+}
+
+.social-box {
+    width: 30%;
+    text-align: center;
+}
+
+
+.social i {
+    font-size: 50px;
+    margin-bottom: 10px;
+    transition: 0.4s ease;
+    color: #fff;
+}
+
+.social p {
+    font-size: 18px;
+    margin-top: 5px;
+}
+
+
+.fb:hover i {
+    color: #1877F2;  
+    transform: scale(1.2);
+}
+
+.ig:hover i {
+    background: linear-gradient(45deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transform: scale(1.2);
+}
+
+.tt:hover i {
+    color: #ffffff;
+    transform: scale(1.2);
+}
+.copyright {
+    margin-top: 35px;
+    font-size: 14px;
+    color: #ddd;
+}
+footer p{
+    color: white;
+    
+}
+footer a{
+    text-decoration: none;
+}
+footer p:hover{
+    color: #DAA520;
+}
+.end{
+    
+    height: 100%px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.end p{
+    color: white;
+    font-size: 20px;
+}
+.end p:hover{
+    color: white;
+
+}
+.lokacioni{
+    padding-top: 10px;
+}
+.k h2{
+    text-align: center;
+}
+.ipari p:hover{
+    color: #DAA520;
+    transform: scale(1.2);
+}
+.itreti p:hover{
+    color: #DAA520;
+    transform: scale(1.2);
+}
+.k a:hover p {
+    color: #DAA520 !important;
+}
+
+.k a:hover i {
+    transform: scale(1.2);
+    color: #DAA520 !important;
+}
+
+
+
+
+</style>
+<body>
+    <nav>
+            <div class="header" >
+            <img src="../img/car.png" alt="" >
+            <div class="menu">
+                <a  href="Ballina.html">Ballina</a>
+                <a  href="makinat.html">Makinat</a>
+                <a  href="RrethNesh.html">Rreth Nesh</a>
+                <a class="K" href="Kontakti.html">Kontakti</a>
+            
+            
+            </div>
+        </div>
+        </nav>
+        <div class="mesi">
+    <div class="tekst">
+        <h4 id="h4">Kontaktoni me ne</h4>
+        <p id="rrethi">
+       Kontaktoni me ne për çdo veturë që ju intereson, për çdo pyetje rreth veturave apo për çfarëdo dileme tjetër!
+           <h3>
+           <a style="text-decoration: none;" id="maki" href="#numrat">Kontaktet</a></h3>
+        </p>
+    </div>
+
+    <div class="hero1">
+        <p  style="color: #DAA520;"></p>
+    </div>
+</div>
+  <div class="k" id="numrat">
+    <h2 style="color: white; margin-bottom: 20px;">Na kontaktoni</h2>
+
+    <div class="ipari">
+        <i class="fa-brands fa-whatsapp" style="color: #25D366; font-size: 24px;"></i>
+        <a href="https://wa.me/38345623827" style="text-decoration:none;">
+            <p style="color: white;">+383 45 623 827</p>
+        </a>
+
+        <i class="fa-brands fa-viber" style="color: #7360F2; font-size: 24px;"></i>
+        <a href="viber://chat?number=38345666777" style="text-decoration:none;">
+            <p style="color: white;">+383 45 666 777</p>
+        </a>
+    </div>
+
+    <div class="ipari">
+        <i class="fa-solid fa-envelope" style="color: lightcoral; font-size: 24px;"></i>
+        <a href="mailto:info@luxxocars.com" style="text-decoration:none;">
+            <p style="color:white;">info@luxxocars.com</p>
+        </a>
+
+        <i class="fa-solid fa-phone" style="color: lightgreen; font-size: 24px;"></i>
+        <a href="tel:+38349111222" style="text-decoration:none;">
+            <p style="color:white;">+383 49 111 222</p>
+        </a>
+    </div>
+
+    <div class="itreti">
+        <i class="fa-brands fa-instagram" style="color: #E4405F; font-size: 24px;"></i>
+        <a href="https://instagram.com/LuxxoCars" style="text-decoration:none;">
+            <p style="color: white;">@LuxxoCars</p>
+        </a>
+
+        <i class="fa-brands fa-facebook" style="color: #1877F2; font-size: 24px;"></i>
+        <a href="https://facebook.com/LuxxoCars" style="text-decoration:none;">
+            <p style="color: white; ">Luxxo Cars</p>
+        </a>
+    </div>
+</div>
+<footer class="footer">
+    <div class="social-container">
+
+        <div class="social-box">
+            <a href="https://www.facebook.com/" target="_blank" class="social fb">
+                <i class="fa-brands fa-facebook-f"></i>
+                <p>Like us on <strong>Facebook</strong></p>
+            </a>
+        </div>
+
+        <div class="social-box">
+            <a href="https://www.instagram.com/" target="_blank" class="social ig">
+                <i class="fa-brands fa-instagram"></i>
+                <p>Follow us on <strong>Instagram</strong></p>
+            </a>
+        </div>
+
+        <div class="social-box">
+            <a href="https://www.tiktok.com/" target="_blank" class="social tt">
+                <i class="fa-brands fa-tiktok"></i>
+                <p>Follow us on <strong>TikTok</strong></p>
+            </a>
+        </div>
+
+    </div>
+    <div class="lokacioni">
+        <img src="../img/car.png" alt="">
+        <p style="color: white; font-size: 20px;"> Magj. Prishtine-Ferizaj,
+        Çagllavicë 10010
+        Kosovë</p>
+    </div>
+
+<div class="end">
+    <p class="copyright">© 2025 Luxxo Cars - All rights reserved</p>
+</div>
+</footer>
+
+</body>
+</html>
