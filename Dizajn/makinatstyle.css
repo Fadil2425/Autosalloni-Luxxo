@@ -103,6 +103,11 @@ a.m{
 .body1 .info1{
     padding: 0 0px;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.body1 .fav{
+    display: flex;
     justify-content: flex-start;
     align-items: center;
 }
@@ -253,4 +258,13 @@ footer p:hover{
 }
 .lokacioni{
     padding-top: 10px;
+}
+
+.pelqim{
+    background: none;
+    color: #DAA520;
+    border: 1px solid #DAA520;
+    cursor: pointer;
+    margin: 5px;
+    width: 20%;
 }

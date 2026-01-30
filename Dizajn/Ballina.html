@@ -10,9 +10,7 @@
     <style>
         body{
             margin: 0;
-            background-color: rgba(0,0,0,0.9); 
-            
-            
+            background-color: rgba(0,0,0,0.9);
         }
         
     .header {
@@ -375,13 +373,14 @@ footer p:hover{
                 <a  href="makinat.html">Makinat</a>
                 <a  href="rrethNesh.html">Rreth Nesh</a>
                 <a href="Kontakti.html">Kontakti</a>
+                <a href="profili.html">Profili</a>
             </div>
-        </div>
+            </div>
         </nav>
         <div class="hero">
         <b><i><h1 class="bannertext" style="color: #DAA520;">Luxxo Cars</h1></i></b>
         <b><i><p class="bannertext1" style="color: #DAA520;">Drive with passion</p></i></b>
-    </div>
+        </div>
 
    <div class="mesi">
     <div class="tekst">
@@ -465,8 +464,36 @@ footer p:hover{
     </footer>
     </div>
     
+    <script>
+        window.onscroll = function() {
+            const header = document.querySelector(".header");
+            if (window.scrollY > 50) {
+                header.style.backgroundColor = "rgba(0,0,0,0.85)";
+                header.style.borderBottom = "1px solid #DAA520";
+            } else {
+                header.style.backgroundColor = "rgba(0,0,0,0.7)";
+                header.style.borderBottom = "none";
+            }
+        };
 
 
 
+        let imazhet = ['../img/banner.avif', '../img/lambo.jpg', '../img/makinat1.jpg'];
+        let koha = 3000;
+        let i = 0;
+
+        function ndryshoImazhin() {
+            const hero = document.querySelector('.hero');
+            hero.style.backgroundImage = `url('${imazhet[i]}')`;
+
+            if (i < imazhet.length - 1) {
+                i++;
+            } else {
+                i = 0;
+            }
+            setTimeout(ndryshoImazhin, koha);
+        }
+        window.onload = ndryshoImazhin;
+    </script>
 </body>
 </html>

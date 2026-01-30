@@ -8,28 +8,96 @@
     <link rel="stylesheet" href="signUpStyle.css">
 </head>
 <body>
-    <form class="box">
+    <form class="box" id="regForm">
         <div class="text">
             <img src="../img/car.png" alt="">
-            <input type="text" placeholder="Emri"> <br>
-            <input type="text" placeholder="Mbiemri"> <br>
-            <input type="email" placeholder="Email"> <br>
-            <input type="password" placeholder="Password"> <br>
-            <input type="password" placeholder="Confirm Password"> <br>
-            <input type="number" placeholder="Numri i telefonit"> <br>
-            <select name="" id="">
+            <input type="text" id="emri" placeholder="Emri"> <br>
+            <input type="text" id="mbiemri" placeholder="Mbiemri"> <br>
+            <input type="email" id="email" placeholder="Email"> <br>
+            <input type="password" id="pass1" placeholder="Password"> <br>
+            <input type="password" id="pass2" placeholder="Confirm Password"> <br>
+            <input type="tel" id="telefoni" placeholder="Numri i telefonit"> <br>
+            <select name="" id="qyteti">
                 <option selected value="">Qyteti</option>
-                <option value="">Prishtine</option>
-                <option value="">Rahovec</option>
-                <option value="">Prizren</option>
-                <option value="">Mitrovice</option>        
+                <option value="Prishtine">Prishtine</option>
+                <option value="Rahovec">Rahovec</option>
+                <option value="Prizren">Prizren</option>
+                <option value="Mitrovice">Mitrovice</option>        
             </select> <br>
-            <button type="submit"><a id="ngj" href="Ballina.html">Sign Up</a></button>
+
+            <p id="mesazhi" style="color: red; font-size: 12px; font-weight: bold;"></p>
+
+            <button type="submit" id="ngj">Sign Up</button>            
             <div class="fundi">
                 <a class="a" href="index.html">Back</a>
                 <a class="a" href="logIn.html">Log In</a>
             </div>
         </div>
     </form>
+    <script>
+
+        document.getElementById('regForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        
+        const emri = document.getElementById('emri').value.trim();
+        const mbiemri = document.getElementById('mbiemri').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const p1 = document.getElementById('pass1').value;
+        const p2 = document.getElementById('pass2').value;
+        const tel = document.getElementById('telefoni').value.trim();
+        const qyteti = document.getElementById('qyteti').value;
+        const msg = document.getElementById('mesazhi');
+
+
+        const regexEmri = /^[A-Za-z]{3,}$/;
+        const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const regexTel = /^04[34589][0-9]{6}$/;
+
+        
+        if (emri === "" || mbiemri === "" || email === "" || tel === "" || p1 === "" || qyteti === "") {
+            msg.innerText = "Ju lutem plotësoni të gjitha fushat!";
+        } 
+        else if (!regexEmri.test(emri) || !regexEmri.test(mbiemri)) {
+            msg.innerText = "Emri dhe Mbiemri duhet të kenë vetëm shkronja!";
+        } 
+        else if (!regexEmail.test(email)) {
+            msg.innerText = "Email-i nuk është i vlefshëm!";
+        } 
+        else if (!regexTel.test(tel)) {
+            msg.innerText = "Numri i telefonit duhet të jetë 04xxxxxxx!";
+        } 
+        else if (p1.length < 6) {
+            msg.innerText = "Fjalëkalimi duhet të ketë së paku 6 karaktere!";
+        } 
+        else if (p1 !== p2) {
+            msg.innerText = "Fjalëkalimet nuk përputhen!";
+        } 
+        else {
+            msg.style.color = "lightgreen";
+            msg.innerText = "Regjistrimi u krye me sukses!";
+
+            let roli = email.endsWith("@luxxo.com") ? "admin" : "user";
+
+            let perdoruesi = {
+                emri: emri,
+                email: email,
+                roli: roli,
+                password: p1
+            };
+
+            
+            localStorage.setItem(email, JSON.stringify(perdoruesi));
+
+            
+            localStorage.setItem("userKycur", JSON.stringify(perdoruesi));
+
+            setTimeout(() => {
+                window.location.href = "Ballina.html";
+            }, 1500);
+        }
+        });
+        
+    </script>
 </body>
 </html>

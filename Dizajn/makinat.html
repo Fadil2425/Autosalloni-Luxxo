@@ -13,11 +13,18 @@
     <nav>
         <div class="header" >
             <img src="../img/car.png" alt="" >
+
+            <div style="text-align: center; margin: 20px;">
+                <input type="text" id="kerkoMakinen" placeholder="Kerko makinen" 
+                style="padding: 10px; margin: -5px; width: 70%; border-radius: 25px; border: 1px solid #DAA520; background: black; color: white;">
+            </div>
+
             <div class="menu">
                 <a  href="Ballina.html">Ballina</a>
                 <a class="m" href="makinat.html">Makinat</a>
                 <a  href="RrethNesh.html">Rreth Nesh</a>
                 <a href="Kontakti.html">Kontakti</a>
+                <a href="profili.html">Profili</a>
             </div>
         </div>
     </nav>
@@ -44,8 +51,11 @@
                 <div class="m1">
                   <a href="Kontakti.html">  <img src="../img/maybach.jpg" alt=""></a>
                     <div class="info1">
-                        <img src="../img/mercedes-benz-logo.png.webp" alt="">
-                        <p>Mercedes S-Class Maybach</p>
+                        <div class="fav">
+                            <img src="../img/mercedes-benz-logo.png.webp" alt="">
+                            <p>Mercedes S-Class Maybach</p>
+                        </div>
+                        <button class="pelqim" onclick="shtoNeFavorite('Mercedes S-Class Maybach')" >Favorite</button>
                     </div>
                     <div class="info">
                         <p>2025</p>
@@ -55,8 +65,11 @@
                 <div class="m1">
                   <a href="Kontakti.html">  <img src="../img/s-class.jpg" alt></a>
                     <div class="info1">
-                        <img src="../img/mercedes-benz-logo.png.webp" alt="">
-                        <p>Mercedes S-Class</p>
+                        <div class="fav">
+                            <img src="../img/mercedes-benz-logo.png.webp" alt="">
+                            <p>Mercedes S-Class</p>
+                        </div>
+                        <button class="pelqim" onclick="shtoNeFavorite('Mercedes S-Class Maybach')" >Favorite</button>
                     </div>
                     <div class="info">
                         <p>2018</p>
@@ -66,8 +79,11 @@
                 <div class="m1">
                    <a href="Kontakti.html"> <img src="../img/g-class.webp" alt=""></a>
                     <div class="info1">
-                        <img src="../img/mercedes-benz-logo.png.webp" alt="">
-                        <p>Mercedes G-Class</p>
+                        <div class="fav">    
+                            <img src="../img/mercedes-benz-logo.png.webp" alt="">
+                            <p>Mercedes G-Class</p>
+                        </div>
+                        <button class="pelqim" onclick="shtoNeFavorite('Mercedes S-Class Maybach')" >Favorite</button>
                     </div>
                     <div class="info">
                         <p>2025</p>
@@ -87,8 +103,11 @@
                 <div class="m1">
                    <a href="Kontakti.html"> <img src="../img/bmw7.avif" alt=""></a>
                     <div class="info1">
-                        <img src="../img/bmw-logo.png.webp" alt="">
-                        <p>BMW 7 Series</p>
+                        <div class="fav">
+                            <img src="../img/bmw-logo.png.webp" alt="">
+                            <p>BMW 7 Series</p>
+                        </div>
+                        <button class="pelqim" onclick="shtoNeFavorite('Mercedes S-Class Maybach')" >Favorite</button>
                     </div>
                     <div class="info">
                         <p>2025</p>
@@ -98,8 +117,11 @@
                 <div class="m1">
                   <a href="Kontakti.html">  <img src="../img/bmwx7.jpg" alt=""></a>
                     <div class="info1">
-                        <img src="../img/bmw-logo.png.webp" alt="">
-                        <p>BMW X7</p>
+                        <div class="fav">
+                            <img src="../img/bmw-logo.png.webp" alt="">
+                            <p>BMW X7</p>
+                        </div>
+                        <button class="pelqim" onclick="shtoNeFavorite('Mercedes S-Class Maybach')" >Favorite</button>
                     </div>
                     <div class="info">
                         <p>2024</p>
@@ -109,8 +131,11 @@
                 <div class="m1">
                     <a href="Kontakti.html"><img src="../img/bmwm4.webp" alt=""></a>
                     <div class="info1">
-                        <img src="../img/bmw-logo.png.webp" alt="">
-                        <p>BMW M4</p>
+                        <div class="fav">
+                            <img src="../img/bmw-logo.png.webp" alt="">
+                            <p>BMW M4</p>
+                        </div>
+                        <button class="pelqim" onclick="shtoNeFavorite('Mercedes S-Class Maybach')" >Favorite</button>
                     </div>
                     <div class="info">
                         <p>2024</p>
@@ -129,8 +154,11 @@
                 <div class="m1">
                    <a href="Kontakti.html"> <img src="../img/s8.jpg" alt=""></a>
                     <div class="info1">
-                        <img style="padding-left: 10px;" src="../img/alogo.png" alt="">
-                        <p style="padding-left: 10px;">Audi S8</p>
+                        <div class="fav">
+                            <img style="padding-left: 10px;" src="../img/alogo.png" alt="">
+                            <p style="padding-left: 10px;">Audi S8</p>
+                        </div>
+                        <button class="pelqim" onclick="shtoNeFavorite('Mercedes S-Class Maybach')" >Favorite</button>
                     </div>
                     <div class="info">
                         <p>2023</p>
@@ -140,8 +168,11 @@
                 <div class="m1">
                    <a href="Kontakti.html"> <img src="../img/s7.jpg" alt=""></a>
                     <div class="info1">
-                        <img style="padding-left: 10px;" src="../img/alogo.png" alt="">
-                        <p style="padding-left: 10px;">Audi S7</p>
+                        <div class="fav">
+                            <img style="padding-left: 10px;" src="../img/alogo.png" alt="">
+                            <p style="padding-left: 10px;">Audi S7</p>
+                        </div>
+                        <button class="pelqim" onclick="shtoNeFavorite('Mercedes S-Class Maybach')" >Favorite</button>
                     </div>
                     <div class="info">
                         <p>2022</p>
@@ -151,8 +182,11 @@
                 <div class="m1">
                    <a href="Kontakti.html"> <img src="../img/q8.avif" alt=""></a>
                     <div class="info1">
-                        <img style="padding-left: 10px;" src="../img/alogo.png" alt="">
-                        <p style="padding-left: 10px;">Audi Q8</p>
+                        <div class="fav">
+                            <img style="padding-left: 10px;" src="../img/alogo.png" alt="">
+                            <p style="padding-left: 10px;">Audi Q8</p>
+                        </div>
+                        <button class="pelqim" onclick="shtoNeFavorite('Mercedes S-Class Maybach')" >Favorite</button>
                     </div>
                     <div class="info">
                         <p>2023</p>
@@ -171,8 +205,11 @@
                 <div class="m1">
                    <a href="Kontakti.html"> <img src="../img/lambo1.jpg" alt=""></a>
                     <div class="info1">
-                        <img src="../img/lamborghini-logo.png.webp" alt="">
-                        <p>Lamborghini Revuelto</p>
+                        <div class="fav">
+                            <img src="../img/lamborghini-logo.png.webp" alt="">
+                            <p>Lamborghini Revuelto</p>
+                        </div>
+                        <button class="pelqim" onclick="shtoNeFavorite('Mercedes S-Class Maybach')" >Favorite</button>
                     </div>
                     <div class="info">
                         <p>2025</p>
@@ -182,8 +219,11 @@
                 <div class="m1">
                    <a href="Kontakti.html"> <img src="../img/lambosvj.webp" alt=""></a>
                     <div class="info1">
-                        <img src="../img/lamborghini-logo.png.webp" alt="">
-                        <p>Lamborghini Aventador SVJ</p>
+                        <div class="fav">
+                            <img src="../img/lamborghini-logo.png.webp" alt="">
+                            <p>Lamborghini Aventador SVJ</p>
+                        </div>
+                        <button class="pelqim" onclick="shtoNeFavorite('Mercedes S-Class Maybach')" >Favorite</button>
                     </div>
                     <div class="info">
                         <p>2022</p>
@@ -193,8 +233,11 @@
                 <div class="m1">
                    <a href="Kontakti.html"> <img src="../img/lambourus.avif" alt=""></a>
                     <div class="info1">
-                        <img src="../img/lamborghini-logo.png.webp" alt="">
-                        <p>Lamborghini Urus</p>
+                        <div class="fav">
+                            <img src="../img/lamborghini-logo.png.webp" alt="">
+                            <p>Lamborghini Urus</p>
+                        </div>
+                        <button class="pelqim" onclick="shtoNeFavorite('Mercedes S-Class Maybach')" >Favorite</button>
                     </div>
                     <div class="info">
                         <p>2023</p>
@@ -213,8 +256,11 @@
                 <div class="m1">
                     <a href="Kontakti.html"><img src="../img/ferrarisf90.jpg" alt=""></a>
                     <div class="info1">
-                        <img src="../img/2025.png.webp" alt="">
-                        <p>Ferrari SF90</p>
+                        <div class="fav">
+                            <img src="../img/2025.png.webp" alt="">
+                            <p>Ferrari SF90</p>
+                        </div>
+                        <button class="pelqim" onclick="shtoNeFavorite('Mercedes S-Class Maybach')" >Favorite</button>
                     </div>
                     <div class="info">
                         <p>2024</p>
@@ -224,8 +270,11 @@
                 <div class="m1">
                    <a href="Kontakti.html"> <img src="../img/ferrarilaferrari.jpg" alt=""></a>
                     <div class="info1">
-                        <img src="../img/2025.png.webp" alt="">
-                        <p>Ferrari LaFerrari</p>
+                        <div class="fav">
+                            <img src="../img/2025.png.webp" alt="">
+                            <p>Ferrari LaFerrari</p>
+                        </div>
+                        <button class="pelqim" onclick="shtoNeFavorite('Mercedes S-Class Maybach')" >Favorite</button>
                     </div>
                     <div class="info">
                         <p>2018</p>
@@ -235,8 +284,11 @@
                 <div class="m1">
                   <a href="Kontakti.html">  <img src="../img/ferrarisuperfast.webp" alt=""></a>
                     <div class="info1">
-                        <img src="../img/2025.png.webp" alt="">
-                        <p>Ferrari Superfast</p>
+                        <div class="fav">
+                            <img src="../img/2025.png.webp" alt="">
+                            <p>Ferrari Superfast</p>
+                        </div>
+                        <button class="pelqim" onclick="shtoNeFavorite('Mercedes S-Class Maybach')" >Favorite</button>
                     </div>
                     <div class="info">
                         <p>2020</p>
@@ -255,8 +307,11 @@
                 <div class="m1">
                    <a href="Kontakti.html"> <img src="../img/porchegt3rs.jpg" alt=""></a>
                     <div class="info1">
-                        <img src="../img/porsche-logo.png.webp" alt="">
-                        <p>Porsche 911 GT3rs</p>
+                        <div class="fav">
+                            <img src="../img/porsche-logo.png.webp" alt="">
+                            <p>Porsche 911 GT3rs</p>
+                        </div>
+                        <button class="pelqim" onclick="shtoNeFavorite('Mercedes S-Class Maybach')" >Favorite</button>
                     </div>
                     <div class="info">
                         <p>2023</p>
@@ -266,8 +321,11 @@
                 <div class="m1">
                    <a href="Kontakti.html"> <img src="../img/porche911carrera.jpg" alt=""></a>
                     <div class="info1">
-                        <img src="../img/porsche-logo.png.webp" alt="">
-                        <p>Porsche 911 Carrera</p>
+                        <div class="fav">
+                            <img src="../img/porsche-logo.png.webp" alt="">
+                            <p>Porsche 911 Carrera</p>
+                        </div>
+                        <button class="pelqim" onclick="shtoNeFavorite('Mercedes S-Class Maybach')" >Favorite</button>
                     </div>
                     <div class="info">
                         <p>2022</p>
@@ -277,8 +335,11 @@
                 <div class="m1">
                    <a href="Kontakti.html"> <img src="../img/porchecayenne.webp" alt=""></a>    
                     <div class="info1">
-                        <img src="../img/porsche-logo.png.webp" alt="">
-                        <p>Porsche Cayenne</p>
+                        <div class="fav">
+                            <img src="../img/porsche-logo.png.webp" alt="">
+                            <p>Porsche Cayenne</p>
+                        </div>
+                        <button class="pelqim" onclick="shtoNeFavorite('Mercedes S-Class Maybach')" >Favorite</button>
                     </div>
                     <div class="info">
                         <p>2022</p>
@@ -321,5 +382,21 @@
                 </div>
             </footer>
         </div>
+        <script>
+            
+            document.getElementById('kerkoMakinen').addEventListener('keyup', function() {
+                let kerko = this.value.toLowerCase();
+                let makinat = document.querySelectorAll('.txt');
+
+                makinat.forEach(makina => {
+                    let emri = makina.querySelector('.info1 p').innerText.toLowerCase();
+                    if (emri.includes(kerko)) {
+                        makina.style.display = "block";
+                    } else {
+                        makina.style.display = "none";
+                    }
+                });
+            });
+</script>
 </body>
 </html>

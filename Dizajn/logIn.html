@@ -3,29 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luxxo Cars </title>
+    <title>Luxxo Cars - Log In</title>
     <link rel="icon" type="image/png" href="../img/car.png">
-    
     <link rel="stylesheet" href="logInStyle.css">
 </head>
 <body>
-    <form class="box">
+    <form class="box" id="loginForm">
         <div class="text">
             <img src="../img/car.png" alt="">
-            <input type="text" placeholder="Emri"> <br>
-            <input type="text" placeholder="Mbiemri"> <br>
-            <input type="email" placeholder="Email"> <br>
-            <input type="password" placeholder="Password"> <br>
-            <input type="password" placeholder="Confirm Password"> <br>
-            <br>
+            
+            <input type="email" id="logEmail" name="email" placeholder="Email"> <br>
+            <input type="password" id="logPass" name="password" placeholder="Password"> <br>
+            
+            <p id="mesazhi" style="color: red; font-size: 12px; font-weight: bold; min-height: 15px;"></p>
 
-            <button type="submit">
-                <a id="ngj" href="Ballina.html">Log In</a></button>
+            <button type="submit" id="btnLog">Log In</button>
+
             <div class="fundi">
                 <a class="a" href="index.html">Back</a>
                 <a href="signUp.html" class="a">Sign Up</a>
             </div>
         </div>
     </form>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault(); 
+
+            const email = document.getElementById('logEmail').value.trim();
+            const pass = document.getElementById('logPass').value;
+            const msg = document.getElementById('mesazhi');
+
+            if (email === "" || pass === "") {
+                msg.innerText = "Plotësoni të gjitha fushat!";
+                return;
+            }
+
+            const perdoruesiRuajtur = localStorage.getItem(email);
+
+            if (!perdoruesiRuajtur) {
+                msg.innerText = "Ky email nuk ekziston në sistem!";
+            }
+            else {
+                const user = JSON.parse(perdoruesiRuajtur);
+
+                if (user.password === pass) {
+                    msg.style.color = "lightgreen";
+                    msg.innerText = "Mirëseerdhe! Po ju drejtojmë...";
+
+                    localStorage.setItem("userKycur", JSON.stringify(user));
+
+                    setTimeout(() => {
+                        if (user.roli === "admin") {
+                            window.location.href = "admin.html";
+                        } else {
+                            window.location.href = "Ballina.html";
+                        }
+                    }, 1200);
+                } else {
+                    msg.innerText = "Fjalëkalimi i gabuar!";
+                }
+            }
+        });
+    </script>
 </body>
 </html>

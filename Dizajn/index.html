@@ -94,6 +94,16 @@ body {
         </div>
         
     </div>
-    
+    <script>
+        let logo = document.querySelector(".menu img");
+
+            logo.onmouseover = function() {
+            this.style.filter = "drop-shadow(0 0 15px #DAA520)";
+        };
+
+        logo.onmouseout = function() {
+            this.style.filter = "none";
+        };
+    </script>
 </body>
 </html>
