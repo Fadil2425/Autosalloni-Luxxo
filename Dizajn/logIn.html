@@ -34,21 +34,21 @@
             const msg = document.getElementById('mesazhi');
 
             if (email === "" || pass === "") {
-                msg.innerText = "Plotësoni të gjitha fushat!";
+                msg.innerText = "Plotesoni te gjitha fushat!";
                 return;
             }
 
             const perdoruesiRuajtur = localStorage.getItem(email);
 
             if (!perdoruesiRuajtur) {
-                msg.innerText = "Ky email nuk ekziston në sistem!";
+                msg.innerText = "Ky email nuk ekziston ne sistem!";
             }
             else {
                 const user = JSON.parse(perdoruesiRuajtur);
 
                 if (user.password === pass) {
                     msg.style.color = "lightgreen";
-                    msg.innerText = "Mirëseerdhe! Po ju drejtojmë...";
+                    msg.innerText = "Mireseerdhe! Po ju drejtojme...";
 
                     localStorage.setItem("userKycur", JSON.stringify(user));
 
@@ -60,7 +60,7 @@
                         }
                     }, 1200);
                 } else {
-                    msg.innerText = "Fjalëkalimi i gabuar!";
+                    msg.innerText = "Fjalekalimi i gabuar!";
                 }
             }
         });

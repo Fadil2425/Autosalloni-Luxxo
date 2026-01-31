@@ -130,18 +130,14 @@
             <div class="profile-info">
                 <h2>Filan Fisteku</h2>
                 <p class="email"><i class="fa-solid fa-envelope"></i> filan.fisteku@email.com</p>
-                <p><i class="fa-solid fa-location-dot"></i> Prishtinë, Kosovë</p>
+                <p><i class="fa-solid fa-location-dot"></i> Prishtine, Kosove</p>
                 <p><i class="fa-solid fa-phone"></i> +383 44 123 456</p>
             </div>
 
             <div class="stats">
                 <div class="stat-box">
-                    <b>2</b>
-                    <span>Makina në garazh</span>
-                </div>
-                <div class="stat-box">
                     <b>5</b>
-                    <span>Të preferuara</span>
+                    <span>Te preferuara</span>
                 </div>
             </div>
 
@@ -150,7 +146,53 @@
             <a href="index.html" style="color: red; font-size: 13px; text-decoration: none; display: block; margin-top: 15px;">Çkyçu (Log Out)</a>
         </div>
     </div>
-    <script>    
+    <script>
+        function shfaqFavoritet() {
+            const user = JSON.parse(localStorage.getItem("userKycur"));
+            if (!user) return;
+
+            let favKey = "fav_" + user.email;
+            let favoritet = JSON.parse(localStorage.getItem(favKey)) || [];
+
+            document.querySelector('.stat-box b').innerText = favoritet.length;
+
+            let listaHTML = "";
+
+            for (let i = 0; i < favoritet.length; i++) {
+                listaHTML += `
+                    <div style="display: flex; justify-content: space-between; padding: 10px; border-bottom: 1px solid #333;">
+                        <span>${favoritet[i]}</span>
+                        <button onclick="largoNgaFavoritet(${i})" style="color: red; background: none; border: none; cursor: pointer;">Largo</button>
+                    </div>
+                `;
+            }
+
+            if (favoritet.length === 0) {
+                listaHTML = "<p>Nuk keni asnje makine favorite.</p>";
+            }
+
+            let divLista = document.getElementById('lista-fav-pastro');
+            if (!divLista) {
+                divLista = document.createElement('div');
+                divLista.id = 'lista-fav-pastro';
+                document.querySelector('.profile-card').appendChild(divLista);
+            }
+            divLista.innerHTML = listaHTML;
+        }
+
+        function largoNgaFavoritet(index) {
+            const user = JSON.parse(localStorage.getItem("userKycur"));
+            let favKey = "fav_" + user.email;
+            let favoritet = JSON.parse(localStorage.getItem(favKey)) || [];
+
+            favoritet.splice(index, 1);
+
+            localStorage.setItem(favKey, JSON.stringify(favoritet));
+
+            shfaqFavoritet();
+        }
+
+        window.onload = shfaqFavoritet;
     </script>
 </body>
 </html>

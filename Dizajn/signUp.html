@@ -56,22 +56,22 @@
 
         
         if (emri === "" || mbiemri === "" || email === "" || tel === "" || p1 === "" || qyteti === "") {
-            msg.innerText = "Ju lutem plotësoni të gjitha fushat!";
+            msg.innerText = "Ju lutem plotesoni te gjitha fushat!";
         } 
         else if (!regexEmri.test(emri) || !regexEmri.test(mbiemri)) {
-            msg.innerText = "Emri dhe Mbiemri duhet të kenë vetëm shkronja!";
+            msg.innerText = "Emri dhe Mbiemri duhet te kene vetem shkronja!";
         } 
         else if (!regexEmail.test(email)) {
-            msg.innerText = "Email-i nuk është i vlefshëm!";
+            msg.innerText = "Email-i nuk eshte i vlefshem!";
         } 
         else if (!regexTel.test(tel)) {
-            msg.innerText = "Numri i telefonit duhet të jetë 04xxxxxxx!";
+            msg.innerText = "Numri i telefonit duhet te jete 04xxxxxxx!";
         } 
         else if (p1.length < 6) {
-            msg.innerText = "Fjalëkalimi duhet të ketë së paku 6 karaktere!";
+            msg.innerText = "Fjalekalimi duhet te kete se paku 6 karaktere!";
         } 
         else if (p1 !== p2) {
-            msg.innerText = "Fjalëkalimet nuk përputhen!";
+            msg.innerText = "Fjalekalimet nuk perputhen!";
         } 
         else {
             msg.style.color = "lightgreen";

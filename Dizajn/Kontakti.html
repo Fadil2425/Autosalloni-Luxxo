@@ -413,54 +413,54 @@ footer p:hover{
 </footer>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const userData = JSON.parse(localStorage.getItem("userKycur"));
-    const nameInput = document.getElementById('name');
-    const emailInput = document.getElementById('email');
+    document.addEventListener('DOMContentLoaded', function() {
+        const userData = JSON.parse(localStorage.getItem("userKycur"));
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
 
-    if (userData) {
-        nameInput.value = userData.emri;
-        emailInput.value = userData.email;
-        nameInput.readOnly = true;
-        emailInput.readOnly = true;
-        nameInput.style.border = "1px solid #DAA520";
-        emailInput.style.border = "1px solid #DAA520";
-    }
-
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        const emri = nameInput.value;
-        const email = emailInput.value;
-        const mesazhi = document.getElementById('message').value;
-
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            alert("Ju lutem jepni një email valid!");
-            return;
+        if (userData) {
+            nameInput.value = userData.emri;
+            emailInput.value = userData.email;
+            nameInput.readOnly = true;
+            emailInput.readOnly = true;
+            nameInput.style.border = "1px solid #DAA520";
+            emailInput.style.border = "1px solid #DAA520";
         }
 
-        let mesazhet = JSON.parse(localStorage.getItem('contactMessages')) || [];
-        
-        const dataRe = {
-            id: Date.now(),
-            emri: emri,
-            email: email,
-            mesazhi: mesazhi,
-            koha: new Date().toLocaleString()
-        };
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
 
-        mesazhet.push(dataRe);
-        localStorage.setItem('contactMessages', JSON.stringify(mesazhet));
+            const emri = nameInput.value;
+            const email = emailInput.value;
+            const mesazhi = document.getElementById('message').value;
 
-        alert("Faleminderit " + emri + "! Mesazhi juaj u regjistrua me sukses.");
-        if (!userData) {
-            this.reset();
-        } else {
-            document.getElementById('message').value = "";
-        }
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert("Ju lutem jepni nje email valid!");
+                return;
+            }
+
+            let mesazhet = JSON.parse(localStorage.getItem('contactMessages')) || [];
+            
+            const dataRe = {
+                id: Date.now(),
+                emri: emri,
+                email: email,
+                mesazhi: mesazhi,
+                koha: new Date().toLocaleString()
+            };
+
+            mesazhet.push(dataRe);
+            localStorage.setItem('contactMessages', JSON.stringify(mesazhet));
+
+            alert("Faleminderit " + emri + "! Mesazhi juaj u regjistrua me sukses.");
+            if (!userData) {
+                this.reset();
+            } else {
+                document.getElementById('message').value = "";
+            }
+        });
     });
-});
 </script>
 </body>
 </html>
