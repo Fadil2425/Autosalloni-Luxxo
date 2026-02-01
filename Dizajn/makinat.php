@@ -20,11 +20,11 @@
             </div>
 
             <div class="menu">
-                <a  href="Ballina.html">Ballina</a>
-                <a class="m" href="makinat.html">Makinat</a>
-                <a  href="RrethNesh.html">Rreth Nesh</a>
-                <a href="Kontakti.html">Kontakti</a>
-                <a href="profili.html">Profili</a>
+                <a  href="Ballina.php">Ballina</a>
+                <a class="m" href="makinat.php">Makinat</a>
+                <a  href="RrethNesh.php">Rreth Nesh</a>
+                <a href="Kontakti.php">Kontakti</a>
+                <a href="profili.php">Profili</a>
             </div>
         </div>
     </nav>
@@ -49,7 +49,7 @@
             </div>
             <div class="auto">
                 <div class="m1">
-                  <a href="Kontakti.html">  <img src="../img/maybach.jpg" alt=""></a>
+                  <a href="Kontakti.php">  <img src="../img/maybach.jpg" alt=""></a>
                     <div class="info1">
                         <div class="fav">
                             <img src="../img/mercedes-benz-logo.png.webp" alt="">
@@ -63,7 +63,7 @@
                     </div>
                 </div>
                 <div class="m1">
-                  <a href="Kontakti.html">  <img src="../img/s-class.jpg" alt></a>
+                  <a href="Kontakti.php">  <img src="../img/s-class.jpg" alt></a>
                     <div class="info1">
                         <div class="fav">
                             <img src="../img/mercedes-benz-logo.png.webp" alt="">
@@ -77,7 +77,7 @@
                     </div>
                 </div>
                 <div class="m1">
-                   <a href="Kontakti.html"> <img src="../img/g-class.webp" alt=""></a>
+                   <a href="Kontakti.php"> <img src="../img/g-class.webp" alt=""></a>
                     <div class="info1">
                         <div class="fav">    
                             <img src="../img/mercedes-benz-logo.png.webp" alt="">
@@ -101,7 +101,7 @@
             </div>
             <div class="auto">
                 <div class="m1">
-                   <a href="Kontakti.html"> <img src="../img/bmw7.avif" alt=""></a>
+                   <a href="Kontakti.php"> <img src="../img/bmw7.avif" alt=""></a>
                     <div class="info1">
                         <div class="fav">
                             <img src="../img/bmw-logo.png.webp" alt="">
@@ -115,7 +115,7 @@
                     </div>
                 </div>
                 <div class="m1">
-                  <a href="Kontakti.html">  <img src="../img/bmwx7.jpg" alt=""></a>
+                  <a href="Kontakti.php">  <img src="../img/bmwx7.jpg" alt=""></a>
                     <div class="info1">
                         <div class="fav">
                             <img src="../img/bmw-logo.png.webp" alt="">
@@ -129,7 +129,7 @@
                     </div>
                 </div>
                 <div class="m1">
-                    <a href="Kontakti.html"><img src="../img/bmwm4.webp" alt=""></a>
+                    <a href="Kontakti.php"><img src="../img/bmwm4.webp" alt=""></a>
                     <div class="info1">
                         <div class="fav">
                             <img src="../img/bmw-logo.png.webp" alt="">
@@ -152,7 +152,7 @@
             </div>
             <div class="auto">
                 <div class="m1">
-                   <a href="Kontakti.html"> <img src="../img/s8.jpg" alt=""></a>
+                   <a href="Kontakti.php"> <img src="../img/s8.jpg" alt=""></a>
                     <div class="info1">
                         <div class="fav">
                             <img style="padding-left: 10px;" src="../img/alogo.png" alt="">
@@ -166,7 +166,7 @@
                     </div>
                 </div>
                 <div class="m1">
-                   <a href="Kontakti.html"> <img src="../img/s7.jpg" alt=""></a>
+                   <a href="Kontakti.php"> <img src="../img/s7.jpg" alt=""></a>
                     <div class="info1">
                         <div class="fav">
                             <img style="padding-left: 10px;" src="../img/alogo.png" alt="">
@@ -180,7 +180,7 @@
                     </div>
                 </div>
                 <div class="m1">
-                   <a href="Kontakti.html"> <img src="../img/q8.avif" alt=""></a>
+                   <a href="Kontakti.php"> <img src="../img/q8.avif" alt=""></a>
                     <div class="info1">
                         <div class="fav">
                             <img style="padding-left: 10px;" src="../img/alogo.png" alt="">
@@ -203,7 +203,7 @@
             </div>
             <div class="auto">
                 <div class="m1">
-                   <a href="Kontakti.html"> <img src="../img/lambo1.jpg" alt=""></a>
+                   <a href="Kontakti.php"> <img src="../img/lambo1.jpg" alt=""></a>
                     <div class="info1">
                         <div class="fav">
                             <img src="../img/lamborghini-logo.png.webp" alt="">
@@ -217,7 +217,7 @@
                     </div>
                 </div>
                 <div class="m1">
-                   <a href="Kontakti.html"> <img src="../img/lambosvj.webp" alt=""></a>
+                   <a href="Kontakti.php"> <img src="../img/lambosvj.webp" alt=""></a>
                     <div class="info1">
                         <div class="fav">
                             <img src="../img/lamborghini-logo.png.webp" alt="">
@@ -231,7 +231,7 @@
                     </div>
                 </div>
                 <div class="m1">
-                   <a href="Kontakti.html"> <img src="../img/lambourus.avif" alt=""></a>
+                   <a href="Kontakti.php"> <img src="../img/lambourus.avif" alt=""></a>
                     <div class="info1">
                         <div class="fav">
                             <img src="../img/lamborghini-logo.png.webp" alt="">
@@ -254,7 +254,7 @@
             </div>
             <div class="auto">
                 <div class="m1">
-                    <a href="Kontakti.html"><img src="../img/ferrarisf90.jpg" alt=""></a>
+                    <a href="Kontakti.php"><img src="../img/ferrarisf90.jpg" alt=""></a>
                     <div class="info1">
                         <div class="fav">
                             <img src="../img/2025.png.webp" alt="">
@@ -268,7 +268,7 @@
                     </div>
                 </div>
                 <div class="m1">
-                   <a href="Kontakti.html"> <img src="../img/ferrarilaferrari.jpg" alt=""></a>
+                   <a href="Kontakti.php"> <img src="../img/ferrarilaferrari.jpg" alt=""></a>
                     <div class="info1">
                         <div class="fav">
                             <img src="../img/2025.png.webp" alt="">
@@ -282,7 +282,7 @@
                     </div>
                 </div>
                 <div class="m1">
-                  <a href="Kontakti.html">  <img src="../img/ferrarisuperfast.webp" alt=""></a>
+                  <a href="Kontakti.php">  <img src="../img/ferrarisuperfast.webp" alt=""></a>
                     <div class="info1">
                         <div class="fav">
                             <img src="../img/2025.png.webp" alt="">
@@ -305,7 +305,7 @@
             </div>
             <div class="auto">
                 <div class="m1">
-                   <a href="Kontakti.html"> <img src="../img/porchegt3rs.jpg" alt=""></a>
+                   <a href="Kontakti.php"> <img src="../img/porchegt3rs.jpg" alt=""></a>
                     <div class="info1">
                         <div class="fav">
                             <img src="../img/porsche-logo.png.webp" alt="">
@@ -319,7 +319,7 @@
                     </div>
                 </div>
                 <div class="m1">
-                   <a href="Kontakti.html"> <img src="../img/porche911carrera.jpg" alt=""></a>
+                   <a href="Kontakti.php"> <img src="../img/porche911carrera.jpg" alt=""></a>
                     <div class="info1">
                         <div class="fav">
                             <img src="../img/porsche-logo.png.webp" alt="">
@@ -333,7 +333,7 @@
                     </div>
                 </div>
                 <div class="m1">
-                   <a href="Kontakti.html"> <img src="../img/porchecayenne.webp" alt=""></a>    
+                   <a href="Kontakti.php"> <img src="../img/porchecayenne.webp" alt=""></a>    
                     <div class="info1">
                         <div class="fav">
                             <img src="../img/porsche-logo.png.webp" alt="">

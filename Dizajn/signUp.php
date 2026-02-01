@@ -29,8 +29,8 @@
 
             <button type="submit" id="ngj">Sign Up</button>            
             <div class="fundi">
-                <a class="a" href="index.html">Back</a>
-                <a class="a" href="logIn.html">Log In</a>
+                <a class="a" href="index.php">Back</a>
+                <a class="a" href="logIn.php">Log In</a>
             </div>
         </div>
     </form>
@@ -93,7 +93,7 @@
             localStorage.setItem("userKycur", JSON.stringify(perdoruesi));
 
             setTimeout(() => {
-                window.location.href = "Ballina.html";
+                window.location.href = "Ballina.php";
             }, 1500);
         }
         });

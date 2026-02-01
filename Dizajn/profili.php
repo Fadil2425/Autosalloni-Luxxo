@@ -116,11 +116,11 @@
     <header class="header">
         <img src="../img/car.png" alt="Logo">
         <div class="menu">
-            <a href="Ballina.html">Ballina</a>
-            <a href="makinat.html">Makinat</a>
-            <a href="rrethNesh.html">Rreth Nesh</a>
-            <a href="Kontakti.html">Kontakti</a>
-            <a href="profili.html" class="m"></i> Profili</a>
+            <a href="Ballina.php">Ballina</a>
+            <a href="makinat.php">Makinat</a>
+            <a href="rrethNesh.php">Rreth Nesh</a>
+            <a href="Kontakti.php">Kontakti</a>
+            <a href="profili.php" class="m"></i> Profili</a>
         </div>
     </header>
 
@@ -143,7 +143,7 @@
 
             <a href="#" class="btn-edit">Edito Profilin</a>
             <br>
-            <a href="index.html" style="color: red; font-size: 13px; text-decoration: none; display: block; margin-top: 15px;">Çkyçu (Log Out)</a>
+            <a href="index.php" style="color: red; font-size: 13px; text-decoration: none; display: block; margin-top: 15px;">Çkyçu (Log Out)</a>
         </div>
     </div>
     <script>

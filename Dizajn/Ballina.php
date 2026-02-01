@@ -369,11 +369,11 @@ footer p:hover{
             <div class="header" >
             <img src="../img/car.png" alt="" >
             <div class="menu">
-                <a class="B" href="Ballina.html">Ballina</a>
-                <a  href="makinat.html">Makinat</a>
-                <a  href="rrethNesh.html">Rreth Nesh</a>
-                <a href="Kontakti.html">Kontakti</a>
-                <a href="profili.html">Profili</a>
+                <a class="B" href="Ballina.php">Ballina</a>
+                <a  href="makinat.php">Makinat</a>
+                <a  href="rrethNesh.php">Rreth Nesh</a>
+                <a href="Kontakti.php">Kontakti</a>
+                <a href="profili.php">Profili</a>
             </div>
             </div>
         </nav>
@@ -387,7 +387,7 @@ footer p:hover{
         <h4 id="h4">Përkushtimi ynë ndaj Përsosmërisë Automobilistike</h4>
         <p id="rrethi">
            Mirë se vini në Auto Sallon Luxxo—destinacioni juaj i parë për përvojën e blerjes së makinave luksoze dhe premium në Kosove. Që nga themelimi ynë, ne kemi pasur një vizion të thjeshtë: të ofrojmë një koleksion të pa rival, të kombinuar me një nivel shërbimi që tejkalon pritshmëritë. 
-           <h3><a style="text-decoration: none;" id="maki" href="makinat.html">Makinat</a></h3>
+           <h3><a style="text-decoration: none;" id="maki" href="makinat.php">Makinat</a></h3>
         </p>
     </div>
 
@@ -419,12 +419,12 @@ footer p:hover{
         </div>
 <div class="sh"><h2 style="color: #DAA520; display: flex;text-align: center;justify-content: center;align-items: center;">Shfleto sipas markes </h2>
        <div class="shfleto">
-    <a href="makinat.html#lamborghiniLogo"><img src="../img/lamborghini-logo.png.webp" alt="Lamborghini"></a>
-    <a href="makinat.html#ferrariLogo"><img src="../img/2025.png.webp" alt="Ferrari"></a>
-    <a href="makinat.html#mercedesLogo"><img src="../img/mercedes-benz-logo.png.webp" alt="Mercedes"></a>
-    <a href="makinat.html#audiLogo"><img src="../img/alogo.png" alt="Audi"></a>
-    <a href="makinat.html#bmwLogo"><img src="../img/bmw-logo.png.webp" alt="BMW"></a>
-    <a href="makinat.html#porscheLogo"><img src="../img/porsche-logo.png.webp" alt="Porsche"></a>
+    <a href="makinat.php#lamborghiniLogo"><img src="../img/lamborghini-logo.png.webp" alt="Lamborghini"></a>
+    <a href="makinat.php#ferrariLogo"><img src="../img/2025.png.webp" alt="Ferrari"></a>
+    <a href="makinat.php#mercedesLogo"><img src="../img/mercedes-benz-logo.png.webp" alt="Mercedes"></a>
+    <a href="makinat.php#audiLogo"><img src="../img/alogo.png" alt="Audi"></a>
+    <a href="makinat.php#bmwLogo"><img src="../img/bmw-logo.png.webp" alt="BMW"></a>
+    <a href="makinat.php#porscheLogo"><img src="../img/porsche-logo.png.webp" alt="Porsche"></a>
 </div>
     <footer class="footer">
     <div class="social-container">

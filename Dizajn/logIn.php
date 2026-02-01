@@ -20,8 +20,8 @@
             <button type="submit" id="btnLog">Log In</button>
 
             <div class="fundi">
-                <a class="a" href="index.html">Back</a>
-                <a href="signUp.html" class="a">Sign Up</a>
+                <a class="a" href="index.php">Back</a>
+                <a href="signUp.php" class="a">Sign Up</a>
             </div>
         </div>
     </form>
@@ -54,9 +54,9 @@
 
                     setTimeout(() => {
                         if (user.roli === "admin") {
-                            window.location.href = "admin.html";
+                            window.location.href = "admin.php";
                         } else {
-                            window.location.href = "Ballina.html";
+                            window.location.href = "Ballina.php";
                         }
                     }, 1200);
                 } else {

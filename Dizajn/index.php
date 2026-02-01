@@ -88,8 +88,8 @@ body {
         </div>
         <br><br><br><br>
             <div class="a">
-                <a href="logIn.html"><button>Log In</button></a>
-                <a href="signUp.html"><button>Sign Up</button></a>
+                <a href="logIn.php"><button>Log In</button></a>
+                <a href="signUp.php"><button>Sign Up</button></a>
             </div>
         </div>
         
