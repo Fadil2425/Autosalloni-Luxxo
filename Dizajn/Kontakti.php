@@ -414,51 +414,52 @@ footer p:hover{
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const userData = JSON.parse(localStorage.getItem("userKycur"));
+        // Marrim të dhënat e përdoruesit nga PHP Session
+        const userEmail = "<?php echo isset($_SESSION['email']) ? $_SESSION['email'] : ''; ?>";
+        const userName = "<?php echo isset($_SESSION['emri']) ? $_SESSION['emri'] : ''; ?>";
+
         const nameInput = document.getElementById('name');
         const emailInput = document.getElementById('email');
+        const contactForm = document.getElementById('contactForm');
 
-        if (userData) {
-            nameInput.value = userData.emri;
-            emailInput.value = userData.email;
+        // Plotësimi automatik nëse është i kyçur
+        if (userEmail !== "") {
+            nameInput.value = userName;
+            emailInput.value = userEmail;
             nameInput.readOnly = true;
             emailInput.readOnly = true;
-            nameInput.style.border = "1px solid #DAA520";
+            nameInput.style.background = "rgba(218, 165, 32, 0.1)";
             emailInput.style.border = "1px solid #DAA520";
         }
 
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
+        contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
 
-            const emri = nameInput.value;
-            const email = emailInput.value;
             const mesazhi = document.getElementById('message').value;
 
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                alert("Ju lutem jepni nje email valid!");
-                return;
-            }
+            // Dërgimi me Fetch te dergo_mesazh.php
+            const formData = new FormData();
+            formData.append('emri', nameInput.value);
+            formData.append('email', emailInput.value);
+            formData.append('mesazhi', mesazhi);
 
-            let mesazhet = JSON.parse(localStorage.getItem('contactMessages')) || [];
-            
-            const dataRe = {
-                id: Date.now(),
-                emri: emri,
-                email: email,
-                mesazhi: mesazhi,
-                koha: new Date().toLocaleString()
-            };
-
-            mesazhet.push(dataRe);
-            localStorage.setItem('contactMessages', JSON.stringify(mesazhet));
-
-            alert("Faleminderit " + emri + "! Mesazhi juaj u regjistrua me sukses.");
-            if (!userData) {
-                this.reset();
-            } else {
-                document.getElementById('message').value = "";
-            }
+            fetch('dergo_mesazh.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(res => res.text())
+            .then(data => {
+                if (data.trim() === "success") {
+                    alert("Faleminderit " + nameInput.value + "! Mesazhi u ruajt në databazë.");
+                    document.getElementById('message').value = ""; // Pastro vetëm fushën e mesazhit
+                } else {
+                    alert("Ndodhi një gabim! Sigurohu që tabela 'mesazhet' ekziston në DB.");
+                }
+            })
+            .catch(err => {
+                console.error("Gabim:", err);
+                alert("Lidhja me serverin dështoi.");
+            });
         });
     });
 </script>
