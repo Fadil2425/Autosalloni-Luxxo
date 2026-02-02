@@ -23,7 +23,7 @@ if (isset($_GET['shto_fav'])) {
     $stmt->bind_param("ii", $u_id, $m_id);
     $stmt->execute();
     
-    header("Location: makinat.php?sukses=1"); // Shtojmë një flag këtu
+    header("Location: makinat.php?sukses=1");
     exit;
 }
 ?>
@@ -86,7 +86,6 @@ if (isset($_GET['shto_fav'])) {
 
     <div class="body1">
     <?php
-    // Definojmë markat: çelësi duhet të jetë fiks siç fillon emri në databazë
     $markat = [
         'Mercedes'    => ['id' => 'mercedesLogo',    'logo' => 'mercedes-benz-logo.png.webp', 'titulli' => 'Mercedes-Benz'],
         'BMW'         => ['id' => 'bmwLogo',         'logo' => 'bmw-logo.png.webp',           'titulli' => 'BMW'],
@@ -97,7 +96,6 @@ if (isset($_GET['shto_fav'])) {
     ];
 
     foreach ($markat as $fjalekyc => $info):
-        // Kërkojmë makinat që fillojnë me emrin e markës (p.sh. Mercedes %)
         $sql = "SELECT * FROM makinat WHERE emri LIKE '$fjalekyc%'";
         $result = $conn->query($sql);
 
