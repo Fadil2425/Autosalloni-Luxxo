@@ -360,7 +360,43 @@ footer p:hover{
 }
 
 
+@media (max-width: 768px) {
+    .header {
+        position: relative;
+        width: 100%;
+        flex-direction: column;
+        padding: 10px 0;
+    }
+    .header .menu {
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 10px;
 
+    }
+
+    .bannertext { font-size: 30px; }
+    .bannertext1 { font-size: 18px; }
+    .hero { height: 350px; }
+
+    .mesi, .social-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    #ipari, #idyti, #itreti, #ikaterti {
+        width: 95%;
+        margin-bottom: 10px;
+    }
+
+    .hero1 { width: 100%; height: 200px; }
+
+    .shfleto {
+        gap: 15px;
+        height: auto;
+    }
+    .shfleto img { width: 60px; }
+}
 
 
     </style>

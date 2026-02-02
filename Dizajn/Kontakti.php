@@ -277,16 +277,65 @@ footer p:hover{
     transform: scale(1.2);
 }
 .k a:hover p {
-    color: #DAA520 !important;
+    color: #DAA520;
 }
 
 .k a:hover i {
     transform: scale(1.2);
-    color: #DAA520 !important;
+    color: #DAA520;
 }
 
 
+@media (max-width: 768px) {
+    .header {
+        position: relative;
+        width: 100%;
+        padding: 10px 0;
+        flex-direction: column;
+    }
+    .header .menu {
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 10px;
+    }
 
+    .mesi {
+        flex-direction: column;
+        margin: 50px auto;
+        width: 95%;
+    }
+    .hero1 {
+        height: 200px;
+    }
+
+    .k {
+        width: 95%;
+        padding: 15px;
+    }
+    .ipari, .itreti {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .contact-form-section {
+        width: 95%;
+        padding: 20px;
+    }
+    #contactForm div {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .social-container {
+        flex-direction: column;
+        gap: 25px;
+    }
+    .social-box {
+        width: 100%;
+    }
+}
 
 </style>
 <body>

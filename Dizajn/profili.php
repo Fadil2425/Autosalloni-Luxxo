@@ -123,6 +123,48 @@ $roli = $_SESSION['roli'];
             font-size: 12px; 
             font-weight: bold; 
         }
+
+@media (max-width: 768px) {
+    .header {
+        position: relative;
+        width: 100%;
+        flex-direction: column;
+        padding: 10px 0;
+    }
+    .header .menu {
+        gap: 15px;
+        margin-top: 10px;
+    }
+
+    .profile-container {
+        margin-top: 20px;
+        padding: 10px;
+    }
+    .profile-card {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .fav-item {
+        padding: 8px;
+    }
+    .fav-item img {
+        width: 50px;
+    }
+    .fav-details strong {
+        font-size: 14px;
+    }
+    .fav-details span {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .stats {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
     </style>
 </head>
 <body>

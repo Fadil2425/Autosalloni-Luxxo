@@ -158,9 +158,42 @@ $seksionet = [
     </div>
 
     <footer class="footer">
-        <div class="end">
-            <p class="copyright">© 2026 Luxxo Cars - All rights reserved</p>
+    <div class="social-container">
+
+        <div class="social-box">
+            <a href="https://www.facebook.com/" target="_blank" class="social fb">
+                <i class="fa-brands fa-facebook-f"></i>
+                <p>Like us on <strong>Facebook</strong></p>
+            </a>
         </div>
+
+        <div class="social-box">
+            <a href="https://www.instagram.com/" target="_blank" class="social ig">
+                <i class="fa-brands fa-instagram"></i>
+                <p>Follow us on <strong>Instagram</strong></p>
+            </a>
+        </div>
+
+        <div class="social-box">
+            <a href="https://www.tiktok.com/" target="_blank" class="social tt">
+                <i class="fa-brands fa-tiktok"></i>
+                <p>Follow us on <strong>TikTok</strong></p>
+            </a>
+        </div>
+
+    </div>
+    <div class="lokacioni" style="padding-top: 10px; text-align: center;">
+    <img src="../img/car.png" alt="" style="display: block; margin: 0 auto 10px auto; width: 100px;">
+    <p style="color: white; font-size: 20px;">
+        Magj. Prishtine-Ferizaj,<br>
+        Çagllavicë 10010<br>
+        Kosovë
+    </p>
+</div>
+
+    <div class="end">
+        <p class="copyright">© 2025 Luxxo Cars - All rights reserved</p>
+    </div>
     </footer>
 
     <script>

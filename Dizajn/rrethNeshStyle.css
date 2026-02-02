@@ -221,3 +221,51 @@ footer p:hover{
 .lokacioni{
     padding-top: 10px;
 }
+
+@media (max-width: 768px) {
+    .header {
+        position: relative;
+        width: 100%;
+        padding: 10px 0;
+        flex-direction: column;
+    }
+    .header .menu {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .b1 {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+        width: 95%;
+    }
+    
+    .b1 img {
+        width: 100%;
+        height: auto;
+        margin-top: 20px;
+    }
+
+    .b2 {
+        width: 90%;
+        margin: 20px auto;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .social-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .social-box {
+        width: 100%;
+    }
+
+    .lokacioni p {
+        font-size: 16px;
+    }
+}
