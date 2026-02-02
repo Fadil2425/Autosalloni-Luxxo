@@ -1,3 +1,8 @@
+<?php
+session_start(); 
+$isLoggedIn = isset($_SESSION['email']);
+$userEmail = $isLoggedIn ? $_SESSION['email'] : "";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -384,6 +389,7 @@
         </div>
         <script>
             
+            
             document.getElementById('kerkoMakinen').addEventListener('keyup', function() {
                 let kerko = this.value.toLowerCase();
                 let makinat = document.querySelectorAll('.txt');
@@ -400,24 +406,27 @@
 
 
             function shtoNeFavorite(emriMakines) {
-                const user = JSON.parse(localStorage.getItem("userKycur"));
-                
-                if (!user) {
-                    alert("Duhet te jeni i kyçur per te shtuar makina ne favorite!");
-                    return;
-                }
+    
+        const userEmail = "<?php echo isset($_SESSION['email']) ? $_SESSION['email'] : ''; ?>";
 
-                let favKey = "fav_" + user.email;
-                let favoritet = JSON.parse(localStorage.getItem(favKey)) || [];
+       
+        if (userEmail === "") {
+            alert("Duhet të jeni i kyçur për të shtuar makina në favorite!");
+            window.location.href = "logIn.php"; 
+            return;
+        }
 
-                if (favoritet.includes(emriMakines)) {
-                    alert("Kjo makine eshte tashme ne listen tuaj!");
-                } else {
-                    favoritet.push(emriMakines);
-                    localStorage.setItem(favKey, JSON.stringify(favoritet));
-                    alert(emriMakines + " u shtua ne favorite!");
-                }
-            }
+        let favKey = "fav_" + userEmail;
+        let favoritet = JSON.parse(localStorage.getItem(favKey)) || [];
+
+        if (favoritet.includes(emriMakines)) {
+            alert("Kjo makinë është tashmë në listën tuaj!");
+        } else {
+            favoritet.push(emriMakines);
+            localStorage.setItem(favKey, JSON.stringify(favoritet));
+            alert(emriMakines + " u shtua në favorite!");
+        }
+    }
 </script>
 </body>
 </html>

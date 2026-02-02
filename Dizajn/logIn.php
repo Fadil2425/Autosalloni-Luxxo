@@ -6,8 +6,7 @@ $mesazhiPHP = "";
 
 // Kontrolli nëse ekziston Cookie (Auto-login nga shkolla)
 if (!isset($_SESSION['user_id']) && isset($_COOKIE['remember_user'])) {
-    // Këtu zakonisht do të bëje një SELECT për të marrë të dhënat e plota, 
-    // por për thjeshtësi po i mbushim nga Cookie
+  
     $_SESSION['email'] = $_COOKIE['remember_user'];
     $_SESSION['roli'] = $_COOKIE['remember_role'];
     header("Location: Ballina.php");
