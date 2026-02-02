@@ -1,43 +1,80 @@
 <?php
-session_start(); 
-$isLoggedIn = isset($_SESSION['email']);
-$userEmail = $isLoggedIn ? $_SESSION['email'] : "";
+session_start();
+require_once '../classes/Database.php';
+
+$db = new Database();
+$conn = $db->getConnection();
+
+if (!isset($_SESSION['user_id']) && isset($_COOKIE['remember_user_id'])) {
+    $_SESSION['user_id'] = $_COOKIE['remember_user_id'];
+    $_SESSION['role']    = $_COOKIE['remember_role'];
+}
+
+if (isset($_GET['shto_fav'])) {
+    if (!isset($_SESSION['user_id'])) {
+        echo "<script>alert('Kyçu që të ruash favorite!'); window.location.href='logIn.php';</script>";
+        exit;
+    }
+
+    $u_id = $_SESSION['user_id'];
+    $m_id = (int)$_GET['shto_fav'];
+
+    $stmt = $conn->prepare("INSERT IGNORE INTO favoritet (user_id, makina_id) VALUES (?, ?)");
+    $stmt->bind_param("ii", $u_id, $m_id);
+    $stmt->execute();
+    
+    header("Location: makinat.php?sukses=1"); // Shtojmë një flag këtu
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luxxo Cars </title>
+    <title>Luxxo Cars</title>
     <link rel="icon" type="image/png" href="../img/car.png">
     <link rel="stylesheet" href="makinatstyle.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <nav>
-        <div class="header" >
-            <img src="../img/car.png" alt="" >
-
+        <div class="header">
+            <img src="../img/car.png" alt="">
             <div style="text-align: center; margin: 20px;">
                 <input type="text" id="kerkoMakinen" placeholder="Kerko makinen" 
                 style="padding: 10px; margin: -5px; width: 70%; border-radius: 25px; border: 1px solid #DAA520; background: black; color: white;">
             </div>
-
             <div class="menu">
-                <a  href="Ballina.php">Ballina</a>
+                <a href="Ballina.php">Ballina</a>
                 <a class="m" href="makinat.php">Makinat</a>
-                <a  href="RrethNesh.php">Rreth Nesh</a>
+                <a href="RrethNesh.php">Rreth Nesh</a>
                 <a href="Kontakti.php">Kontakti</a>
                 <a href="profili.php">Profili</a>
             </div>
         </div>
     </nav>
+
     <div class="body">
+        <?php if (isset($_GET['sukses'])): ?>
+            <div id="msg-sukses" style="color: #DAA520; text-align: center; background: rgba(218, 165, 32, 0.1); padding: 15px; border-radius: 5px; margin: 20px auto; width: 50%; border: 1px solid #DAA520; font-family: sans-serif;">
+                <i class="fa-solid fa-circle-check"></i> Makina u shtua në favorite!
+            </div>
+            <script>
+                setTimeout(() => {
+                    const msg = document.getElementById('msg-sukses');
+                    if(msg) msg.style.opacity = '0';
+                    setTimeout(() => msg.style.display = 'none', 500);
+                }, 2500);
+            </script>
+        <?php endif; ?>
+
         <b><i><h1 class="bannertext" style="color: #DAA520;">Makinat</h1></i></b>
     </div>
-    <div class="sh"><h2 style="color: #DAA520; display: flex;text-align: center;justify-content: center;align-items: center;">Shfleto sipas markes </h2>
-       <div class="shfleto">
+
+    <div class="sh">
+        <h2 style="color: #DAA520; display: flex; text-align: center; justify-content: center; align-items: center;">Shfleto sipas markes</h2>
+        <div class="shfleto">
             <a href="#lamborghiniLogo"><img src="../img/lamborghini-logo.png.webp" alt="Lamborghini"></a>
             <a href="#ferrariLogo"><img src="../img/2025.png.webp" alt="Ferrari"></a>
             <a href="#mercedesLogo"><img src="../img/mercedes-benz-logo.png.webp" alt="Mercedes"></a>
@@ -46,387 +83,104 @@ $userEmail = $isLoggedIn ? $_SESSION['email'] : "";
             <a href="#porscheLogo"><img src="../img/porsche-logo.png.webp" alt="Porsche"></a>
         </div>
     </div>
+
     <div class="body1">
+    <?php
+    // Definojmë markat: çelësi duhet të jetë fiks siç fillon emri në databazë
+    $markat = [
+        'Mercedes'    => ['id' => 'mercedesLogo',    'logo' => 'mercedes-benz-logo.png.webp', 'titulli' => 'Mercedes-Benz'],
+        'BMW'         => ['id' => 'bmwLogo',         'logo' => 'bmw-logo.png.webp',           'titulli' => 'BMW'],
+        'Audi'        => ['id' => 'audiLogo',        'logo' => 'alogo.png',                  'titulli' => 'Audi'],
+        'Lamborghini' => ['id' => 'lamborghiniLogo', 'logo' => 'lamborghini-logo.png.webp',  'titulli' => 'Lamborghini'],
+        'Ferrari'     => ['id' => 'ferrariLogo',     'logo' => '2025.png.webp',              'titulli' => 'Ferrari'],
+        'Porsche'     => ['id' => 'porscheLogo',     'logo' => 'porsche-logo.png.webp',      'titulli' => 'Porsche']
+    ];
+
+    foreach ($markat as $fjalekyc => $info):
+        // Kërkojmë makinat që fillojnë me emrin e markës (p.sh. Mercedes %)
+        $sql = "SELECT * FROM makinat WHERE emri LIKE '$fjalekyc%'";
+        $result = $conn->query($sql);
+
+        if ($result && $result->num_rows > 0): 
+    ?>
         <div class="txt">
-            <div  id="mercedesLogo" class="txt1">
-                <img src="../img/mercedes-benz-logo.png.webp" alt="">
-                <h2>Mercedes-Benz</h2>
+            <div id="<?php echo $info['id']; ?>" class="txt1">
+                <img src="../img/<?php echo $info['logo']; ?>" alt="">
+                <h2><?php echo $info['titulli']; ?></h2>
             </div>
+
             <div class="auto">
-                <div class="m1">
-                  <a href="Kontakti.php">  <img src="../img/maybach.jpg" alt=""></a>
-                    <div class="info1">
-                        <div class="fav">
-                            <img src="../img/mercedes-benz-logo.png.webp" alt="">
-                            <p>Mercedes S-Class Maybach</p>
+                <?php while($row = $result->fetch_assoc()): ?>
+                    <div class="m1">
+                        <a href="Kontakti.php">
+                            <img src="<?php echo $row['foto']; ?>" alt="">
+                        </a>
+                        <div class="info1">
+                            <div class="fav">
+                                <img src="../img/<?php echo $info['logo']; ?>" alt="" style="width: 50px; height: 40px;">
+                                <p><?php echo $row['emri']; ?></p>
+                            </div>
+                            <a href="?shto_fav=<?php echo $row['id']; ?>" class="pelqim-link" style="text-decoration: none; color: #DAA520; font-weight: bold; font-size: 13px;">
+                                <i class="fa-solid fa-heart"></i> Favorite
+                            </a>
                         </div>
-                        <button class="pelqim" onclick="shtoNeFavorite('Mercedes S-Class Maybach')" >Favorite</button>
-                    </div>
-                    <div class="info">
-                        <p>2025</p>
-                        <p>0 km</p>
-                    </div>
-                </div>
-                <div class="m1">
-                  <a href="Kontakti.php">  <img src="../img/s-class.jpg" alt></a>
-                    <div class="info1">
-                        <div class="fav">
-                            <img src="../img/mercedes-benz-logo.png.webp" alt="">
-                            <p>Mercedes S-Class</p>
+                        <div class="info">
+                            <p><?php echo $row['viti']; ?></p>
+                            <p><?php echo $row['kilometrat']; ?></p>
                         </div>
-                        <button class="pelqim" onclick="shtoNeFavorite('Mercedes S-Class')" >Favorite</button>
                     </div>
-                    <div class="info">
-                        <p>2018</p>
-                        <p>90,000 km</p>
-                    </div>
-                </div>
-                <div class="m1">
-                   <a href="Kontakti.php"> <img src="../img/g-class.webp" alt=""></a>
-                    <div class="info1">
-                        <div class="fav">    
-                            <img src="../img/mercedes-benz-logo.png.webp" alt="">
-                            <p>Mercedes G-Class</p>
-                        </div>
-                        <button class="pelqim" onclick="shtoNeFavorite('Mercedes G-Class')" >Favorite</button>
-                    </div>
-                    <div class="info">
-                        <p>2025</p>
-                        <p>0 km</p>
-                    </div>
-                </div>
+                <?php endwhile; ?>
             </div>
         </div>
         <br>
-        <div class="txt">
-            <div id="bmwLogo" class="txt1">
-              
-                <img src="../img/bmw-logo.png.webp" alt="">
-                <h2>BMW</h2>
-            </div>
-            <div class="auto">
-                <div class="m1">
-                   <a href="Kontakti.php"> <img src="../img/bmw7.avif" alt=""></a>
-                    <div class="info1">
-                        <div class="fav">
-                            <img src="../img/bmw-logo.png.webp" alt="">
-                            <p>BMW 7 Series</p>
-                        </div>
-                        <button class="pelqim" onclick="shtoNeFavorite('BMW 7 Series')" >Favorite</button>
-                    </div>
-                    <div class="info">
-                        <p>2025</p>
-                        <p>0 km</p>
-                    </div>
-                </div>
-                <div class="m1">
-                  <a href="Kontakti.php">  <img src="../img/bmwx7.jpg" alt=""></a>
-                    <div class="info1">
-                        <div class="fav">
-                            <img src="../img/bmw-logo.png.webp" alt="">
-                            <p>BMW X7</p>
-                        </div>
-                        <button class="pelqim" onclick="shtoNeFavorite('BMW X7')" >Favorite</button>
-                    </div>
-                    <div class="info">
-                        <p>2024</p>
-                        <p>10,000 km</p>
-                    </div>
-                </div>
-                <div class="m1">
-                    <a href="Kontakti.php"><img src="../img/bmwm4.webp" alt=""></a>
-                    <div class="info1">
-                        <div class="fav">
-                            <img src="../img/bmw-logo.png.webp" alt="">
-                            <p>BMW M4</p>
-                        </div>
-                        <button class="pelqim" onclick="shtoNeFavorite('BMW M4')" >Favorite</button>
-                    </div>
-                    <div class="info">
-                        <p>2024</p>
-                        <p>5,000 km</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
-        <div class="txt">
-            <div id="audiLogo" class="txt1">
-                <img src="../img/alogo.png" alt="">
-                <h2>Audi</h2>
-            </div>
-            <div class="auto">
-                <div class="m1">
-                   <a href="Kontakti.php"> <img src="../img/s8.jpg" alt=""></a>
-                    <div class="info1">
-                        <div class="fav">
-                            <img style="padding-left: 10px;" src="../img/alogo.png" alt="">
-                            <p style="padding-left: 10px;">Audi S8</p>
-                        </div>
-                        <button class="pelqim" onclick="shtoNeFavorite('Audi S8')" >Favorite</button>
-                    </div>
-                    <div class="info">
-                        <p>2023</p>
-                        <p>20,000 km</p>
-                    </div>
-                </div>
-                <div class="m1">
-                   <a href="Kontakti.php"> <img src="../img/s7.jpg" alt=""></a>
-                    <div class="info1">
-                        <div class="fav">
-                            <img style="padding-left: 10px;" src="../img/alogo.png" alt="">
-                            <p style="padding-left: 10px;">Audi S7</p>
-                        </div>
-                        <button class="pelqim" onclick="shtoNeFavorite('Audi S7')" >Favorite</button>
-                    </div>
-                    <div class="info">
-                        <p>2022</p>
-                        <p>70,000 km</p>
-                    </div>
-                </div>
-                <div class="m1">
-                   <a href="Kontakti.php"> <img src="../img/q8.avif" alt=""></a>
-                    <div class="info1">
-                        <div class="fav">
-                            <img style="padding-left: 10px;" src="../img/alogo.png" alt="">
-                            <p style="padding-left: 10px;">Audi Q8</p>
-                        </div>
-                        <button class="pelqim" onclick="shtoNeFavorite('Audi Q8')" >Favorite</button>
-                    </div>
-                    <div class="info">
-                        <p>2023</p>
-                        <p>90,000 km</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
-        <div class="txt">
-            <div id="lamborghiniLogo" class="txt1">
-                <img src="../img/lamborghini-logo.png.webp" alt="">
-                <h2>Lamborghini</h2>
-            </div>
-            <div class="auto">
-                <div class="m1">
-                   <a href="Kontakti.php"> <img src="../img/lambo1.jpg" alt=""></a>
-                    <div class="info1">
-                        <div class="fav">
-                            <img src="../img/lamborghini-logo.png.webp" alt="">
-                            <p>Lamborghini Revuelto</p>
-                        </div>
-                        <button class="pelqim" onclick="shtoNeFavorite('Lamborghini Revuelto')" >Favorite</button>
-                    </div>
-                    <div class="info">
-                        <p>2025</p>
-                        <p>0 km</p>
-                    </div>
-                </div>
-                <div class="m1">
-                   <a href="Kontakti.php"> <img src="../img/lambosvj.webp" alt=""></a>
-                    <div class="info1">
-                        <div class="fav">
-                            <img src="../img/lamborghini-logo.png.webp" alt="">
-                            <p>Lamborghini Aventador SVJ</p>
-                        </div>
-                        <button class="pelqim" onclick="shtoNeFavorite('Lamborghini Aventador SVJ')" >Favorite</button>
-                    </div>
-                    <div class="info">
-                        <p>2022</p>
-                        <p>90,000 km</p>
-                    </div>
-                </div>
-                <div class="m1">
-                   <a href="Kontakti.php"> <img src="../img/lambourus.avif" alt=""></a>
-                    <div class="info1">
-                        <div class="fav">
-                            <img src="../img/lamborghini-logo.png.webp" alt="">
-                            <p>Lamborghini Urus</p>
-                        </div>
-                        <button class="pelqim" onclick="shtoNeFavorite('Lamborghini Urus')" >Favorite</button>
-                    </div>
-                    <div class="info">
-                        <p>2023</p>
-                        <p>70,000 km</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
-        <div class="txt">
-            <div id="ferrariLogo" class="txt1">
-                <img src="../img/2025.png.webp" alt="">
-                <h2>Ferrari</h2>
-            </div>
-            <div class="auto">
-                <div class="m1">
-                    <a href="Kontakti.php"><img src="../img/ferrarisf90.jpg" alt=""></a>
-                    <div class="info1">
-                        <div class="fav">
-                            <img src="../img/2025.png.webp" alt="">
-                            <p>Ferrari SF90</p>
-                        </div>
-                        <button class="pelqim" onclick="shtoNeFavorite('Ferrari SF90')" >Favorite</button>
-                    </div>
-                    <div class="info">
-                        <p>2024</p>
-                        <p>5,000 km</p>
-                    </div>
-                </div>
-                <div class="m1">
-                   <a href="Kontakti.php"> <img src="../img/ferrarilaferrari.jpg" alt=""></a>
-                    <div class="info1">
-                        <div class="fav">
-                            <img src="../img/2025.png.webp" alt="">
-                            <p>Ferrari LaFerrari</p>
-                        </div>
-                        <button class="pelqim" onclick="shtoNeFavorite('Ferrari LaFerrari')" >Favorite</button>
-                    </div>
-                    <div class="info">
-                        <p>2018</p>
-                        <p>110,000 km</p>
-                    </div>
-                </div>
-                <div class="m1">
-                  <a href="Kontakti.php">  <img src="../img/ferrarisuperfast.webp" alt=""></a>
-                    <div class="info1">
-                        <div class="fav">
-                            <img src="../img/2025.png.webp" alt="">
-                            <p>Ferrari Superfast</p>
-                        </div>
-                        <button class="pelqim" onclick="shtoNeFavorite('Ferrari Superfast')" >Favorite</button>
-                    </div>
-                    <div class="info">
-                        <p>2020</p>
-                        <p>60,000 km</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
-        <div class="txt">
-            <div id="porscheLogo" class="txt1">
-                <img src="../img/porsche-logo.png.webp" alt="">
-                <h2>Porsche</h2>
-            </div>
-            <div class="auto">
-                <div class="m1">
-                   <a href="Kontakti.php"> <img src="../img/porchegt3rs.jpg" alt=""></a>
-                    <div class="info1">
-                        <div class="fav">
-                            <img src="../img/porsche-logo.png.webp" alt="">
-                            <p>Porsche 911 GT3rs</p>
-                        </div>
-                        <button class="pelqim" onclick="shtoNeFavorite('Porsche 911 GT3rs')" >Favorite</button>
-                    </div>
-                    <div class="info">
-                        <p>2023</p>
-                        <p>20,000 km</p>
-                    </div>
-                </div>
-                <div class="m1">
-                   <a href="Kontakti.php"> <img src="../img/porche911carrera.jpg" alt=""></a>
-                    <div class="info1">
-                        <div class="fav">
-                            <img src="../img/porsche-logo.png.webp" alt="">
-                            <p>Porsche 911 Carrera</p>
-                        </div>
-                        <button class="pelqim" onclick="shtoNeFavorite('Porsche 911 Carrera')" >Favorite</button>
-                    </div>
-                    <div class="info">
-                        <p>2022</p>
-                        <p>40,000 km</p>
-                    </div>
-                </div>
-                <div class="m1">
-                   <a href="Kontakti.php"> <img src="../img/porchecayenne.webp" alt=""></a>    
-                    <div class="info1">
-                        <div class="fav">
-                            <img src="../img/porsche-logo.png.webp" alt="">
-                            <p>Porsche Cayenne</p>
-                        </div>
-                        <button class="pelqim" onclick="shtoNeFavorite('Porsche Cayenne')" >Favorite</button>
-                    </div>
-                    <div class="info">
-                        <p>2022</p>
-                        <p>100,000 km</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <?php 
+        endif; 
+    endforeach; 
+    ?>
+</div>
     </div>
-    <div class="sh">
-        <footer class="footer">
-            <div class="social-container">
-                <div class="social-box">
-                    <a href="https://www.facebook.com/" target="_blank" class="social fb">
-                        <i class="fa-brands fa-facebook-f"></i>
-                        <p>Like us on <strong>Facebook</strong></p>
-                    </a>
-                </div>
-                <div class="social-box">
-                    <a href="https://www.instagram.com/" target="_blank" class="social ig">
-                        <i class="fa-brands fa-instagram"></i>
-                        <p>Follow us on <strong>Instagram</strong></p>
-                    </a>
-                </div>
-                <div class="social-box">
-                    <a href="https://www.tiktok.com/" target="_blank" class="social tt">
-                        <i class="fa-brands fa-tiktok"></i>
-                        <p>Follow us on <strong>TikTok</strong></p>
-                    </a>
-                </div>
+
+    <footer class="footer">
+        <div class="social-container">
+            <div class="social-box">
+                <a href="https://www.facebook.com/" target="_blank" class="social fb">
+                    <i class="fa-brands fa-facebook-f"></i>
+                    <p>Like us on <strong>Facebook</strong></p>
+                </a>
             </div>
-            <div class="lokacioni">
-                <img src="../img/car.png" alt="">
-                <p style="color: white; font-size: 20px;"> Magj. Prishtine-Ferizaj,
-                    Çagllavicë 10010
-                    Kosovë</p>
-                </div>
-                <div class="end">
-                    <p class="copyright">© 2025 Luxxo Cars - All rights reserved</p>
-                </div>
-            </footer>
+            <div class="social-box">
+                <a href="https://www.instagram.com/" target="_blank" class="social ig">
+                    <i class="fa-brands fa-instagram"></i>
+                    <p>Follow us on <strong>Instagram</strong></p>
+                </a>
+            </div>
+            <div class="social-box">
+                <a href="https://www.tiktok.com/" target="_blank" class="social tt">
+                    <i class="fa-brands fa-tiktok"></i>
+                    <p>Follow us on <strong>TikTok</strong></p>
+                </a>
+            </div>
         </div>
-        <script>
-            
-            
-            document.getElementById('kerkoMakinen').addEventListener('keyup', function() {
-                let kerko = this.value.toLowerCase();
-                let makinat = document.querySelectorAll('.txt');
+        <div class="lokacioni" style="display: flex; flex-direction: column; align-items: center; text-align: center; width: 100%; margin-top: 20px;">
+            <img src="../img/car.png" alt="" style="width: 100px; height: auto;">
+            <p style="color: white; font-size: 20px; margin-top: 10px;"> 
+                Magj. Prishtine-Ferizaj, Çagllavicë 10010, Kosovë
+            </p>
+        </div>
+        <div class="end">
+            <p class="copyright">© 2025 Luxxo Cars - All rights reserved</p>
+        </div>
+    </footer>
 
-                makinat.forEach(makina => {
-                    let emri = makina.querySelector('.info1 p').innerText.toLowerCase();
-                    if (emri.includes(kerko)) {
-                        makina.style.display = "block";
-                    } else {
-                        makina.style.display = "none";
-                    }
-                });
+    <script>
+        document.getElementById('kerkoMakinen').addEventListener('keyup', function() {
+            let kerko = this.value.toLowerCase();
+            let kartat = document.querySelectorAll('.m1');
+            kartat.forEach(karta => {
+                let emri = karta.querySelector('.fav p').innerText.toLowerCase();
+                karta.style.display = emri.includes(kerko) ? "block" : "none";
             });
-
-
-            function shtoNeFavorite(emriMakines) {
-    
-        const userEmail = "<?php echo isset($_SESSION['email']) ? $_SESSION['email'] : ''; ?>";
-
-       
-        if (userEmail === "") {
-            alert("Duhet të jeni i kyçur për të shtuar makina në favorite!");
-            window.location.href = "logIn.php"; 
-            return;
-        }
-
-        let favKey = "fav_" + userEmail;
-        let favoritet = JSON.parse(localStorage.getItem(favKey)) || [];
-
-        if (favoritet.includes(emriMakines)) {
-            alert("Kjo makinë është tashmë në listën tuaj!");
-        } else {
-            favoritet.push(emriMakines);
-            localStorage.setItem(favKey, JSON.stringify(favoritet));
-            alert(emriMakines + " u shtua në favorite!");
-        }
-    }
-</script>
+        });
+    </script>
 </body>
 </html>
