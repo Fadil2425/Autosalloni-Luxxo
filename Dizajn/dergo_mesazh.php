@@ -1,9 +1,7 @@
 <?php
 session_start();
-// 1. Sigurohu që ky path është 100% i saktë
 require_once '../classes/Database.php';
 
-// Aktivizo raportimin e gabimeve
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
@@ -20,7 +18,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email = $_POST['email'] ?? '';
         $mesazhi = $_POST['mesazhi'] ?? '';
 
-        // Kontrollojmë nëse tabela ekziston vërtet
         $sql = "INSERT INTO mesazhet (emri, email, mesazhi) VALUES (?, ?, ?)";
         $stmt = $conn->prepare($sql);
         

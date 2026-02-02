@@ -4,7 +4,6 @@ require_once '../classes/Database.php';
 
 $mesazhiPHP = "";
 
-// Kontrolli nëse ekziston Cookie (Auto-login nga shkolla)
 if (!isset($_SESSION['user_id']) && isset($_COOKIE['remember_user'])) {
   
     $_SESSION['email'] = $_COOKIE['remember_user'];
@@ -19,9 +18,8 @@ if (isset($_POST['login'])) {
 
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $remember = isset($_POST['remember']); // Kontrollon nëse është klikuar checkbox
+    $remember = isset($_POST['remember']);
 
-    // Kontrolli në databazë
     $sql = "SELECT * FROM user WHERE email = ? AND password = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ss", $email, $password);
@@ -31,21 +29,18 @@ if (isset($_POST['login'])) {
     if ($result->num_rows === 1) {
         $user = $result->fetch_assoc();
 
-        // Ruajtja në SESSION
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['emri'] = $user['emri'];
         $_SESSION['email'] = $user['email'];
         $_SESSION['roli'] = $user['roli'];
 
-        // Krijimi i COOKIE nëse është klikuar Remember Me
         if ($remember) {
             setcookie("remember_user", $user['email'], time() + 86400, "/");
             setcookie("remember_role", $user['roli'], time() + 86400, "/");
         }
 
-        // Ridrejtimi sipas rolit
         if ($user['roli'] === 'admin') {
-            header("Location: admin.php");
+            header("Location: Ballina.php");
         } else {
             header("Location: Ballina.php");
         }

@@ -414,7 +414,6 @@ footer p:hover{
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Marrim të dhënat e përdoruesit nga PHP Session
         const userEmail = "<?php echo isset($_SESSION['email']) ? $_SESSION['email'] : ''; ?>";
         const userName = "<?php echo isset($_SESSION['emri']) ? $_SESSION['emri'] : ''; ?>";
 
@@ -422,7 +421,6 @@ footer p:hover{
         const emailInput = document.getElementById('email');
         const contactForm = document.getElementById('contactForm');
 
-        // Plotësimi automatik nëse është i kyçur
         if (userEmail !== "") {
             nameInput.value = userName;
             emailInput.value = userEmail;
@@ -437,7 +435,6 @@ footer p:hover{
 
             const mesazhi = document.getElementById('message').value;
 
-            // Dërgimi me Fetch te dergo_mesazh.php
             const formData = new FormData();
             formData.append('emri', nameInput.value);
             formData.append('email', emailInput.value);
@@ -451,7 +448,7 @@ footer p:hover{
             .then(data => {
                 if (data.trim() === "success") {
                     alert("Faleminderit " + nameInput.value + "! Mesazhi u ruajt në databazë.");
-                    document.getElementById('message').value = ""; // Pastro vetëm fushën e mesazhit
+                    document.getElementById('message').value = "";
                 } else {
                     alert("Ndodhi një gabim! Sigurohu që tabela 'mesazhet' ekziston në DB.");
                 }

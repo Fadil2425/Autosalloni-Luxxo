@@ -134,53 +134,60 @@ $roli = $_SESSION['roli'];
             <a href="makinat.php">Makinat</a>
             <a href="rrethNesh.php">Rreth Nesh</a>
             <a href="Kontakti.php">Kontakti</a>
-            <?php if($roli === 'admin'): ?>
-                <a href="../Admin/dashboard.php" style="color: #DAA520;">Dashboard</a>
-            <?php endif; ?>
             <a href="profili.php" class="m">Profili</a>
         </div>
     </header>
 
     <div class="profile-container">
-        <div class="profile-card">
-            <img src="../img/car.png" style="width: 80px;" alt="User">
-            <div class="profile-info">
-                <h2><?php echo htmlspecialchars($emri); ?></h2>
-                <p><i class="fa-solid fa-envelope"></i> <?php echo htmlspecialchars($email); ?></p>
-                <p><i class="fa-solid fa-user-tag"></i> Roli: <?php echo ucfirst($roli); ?></p>
-            </div>
-
-            <div class="stats">
-                <div class="stat-box">
-                    <b><?php echo count($makinatFavorite); ?></b>
-                    <span>Të preferuara</span>
-                </div>
-            </div>
-
-            <div style="margin-top: 30px; text-align: left;">
-                <h3 style="font-size: 16px; border-bottom: 1px solid #333; padding-bottom: 10px;">Makina të Ruajtura</h3>
-                
-                <?php if (empty($makinatFavorite)): ?>
-                    <p style="color: #888; text-align: center; margin-top: 10px;">Nuk keni asnjë makinë favorite.</p>
-                <?php else: ?>
-                    <?php foreach ($makinatFavorite as $makina): ?>
-                        <div class="fav-item">
-                            <img src="<?php echo $makina['foto']; ?>" alt="Car">
-                            <div class="fav-details">
-                                <strong><?php echo $makina['emri']; ?></strong>
-                                <span>Viti: <?php echo $makina['viti']; ?></span>
-                            </div>
-                            <a href="largo_favorit.php?id=<?php echo $makina['id']; ?>" class="btn-remove" onclick="return confirm('A jeni të sigurt?')">Largo</a>
-                        </div>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-            </div>
-
-            <br>
-            <a href="logout.php" style="color: #ff6b6b; font-size: 13px; text-decoration: none; font-weight: bold;">
-                <i class="fa-solid fa-right-from-bracket"></i> Çkyçu (Log Out)
-            </a>
+    <div class="profile-card">
+        <img src="../img/car.png" style="width: 80px;" alt="User">
+        <div class="profile-info">
+            <h2><?php echo htmlspecialchars($emri); ?></h2>
+            <p><i class="fa-solid fa-envelope"></i> <?php echo htmlspecialchars($email); ?></p>
+            <p><i class="fa-solid fa-user-tag"></i> Roli: <?php echo ucfirst($roli); ?></p>
         </div>
+
+        <div class="stats">
+            <div class="stat-box">
+                <b><?php echo count($makinatFavorite); ?></b>
+                <span>Të preferuara</span>
+            </div>
+        </div>
+
+        <?php if($roli === 'admin'): ?>
+            <div style="margin-top: 25px; padding: 15px; background: rgba(218, 165, 32, 0.1); border: 1px solid #DAA520; border-radius: 10px;">
+                <h4 style="margin: 0 0 10px 0; color: #DAA520; font-size: 14px;">PANELI I KONTROLLIT</h4>
+                <a href="../admin/admin_dashboard.php" 
+                   style="display: block; background: #DAA520; color: black; text-decoration: none; padding: 10px; border-radius: 5px; font-weight: bold; font-size: 14px; transition: 0.3s;">
+                   <i class="fa-solid fa-gauge-high"></i> HYR NË DASHBOARD
+                </a>
+            </div>
+        <?php endif; ?>
+
+        <div style="margin-top: 30px; text-align: left;">
+            <h3 style="font-size: 16px; border-bottom: 1px solid #333; padding-bottom: 10px;">Makina të Ruajtura</h3>
+            
+            <?php if (empty($makinatFavorite)): ?>
+                <p style="color: #888; text-align: center; margin-top: 10px;">Nuk keni asnjë makinë favorite.</p>
+            <?php else: ?>
+                <?php foreach ($makinatFavorite as $makina): ?>
+                    <div class="fav-item">
+                        <img src="<?php echo $makina['foto']; ?>" alt="Car">
+                        <div class="fav-details">
+                            <strong><?php echo $makina['emri']; ?></strong>
+                            <span>Viti: <?php echo $makina['viti']; ?></span>
+                        </div>
+                        <a href="largo_favorit.php?id=<?php echo $makina['id']; ?>" class="btn-remove" onclick="return confirm('A jeni të sigurt?')">Largo</a>
+                    </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </div>
+
+        <br>
+        <a href="logout.php" style="color: #ff6b6b; font-size: 13px; text-decoration: none; font-weight: bold;">
+            <i class="fa-solid fa-right-from-bracket"></i> Çkyçu (Log Out)
+        </a>
     </div>
+</div>
 </body>
 </html>

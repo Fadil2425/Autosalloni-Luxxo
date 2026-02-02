@@ -8,7 +8,6 @@ class Message {
         $this->connection = $connection;
     }
 
-    // Metoda për të dërguar mesazh (përdoret te kontakti.php)
     public function send(string $emri, string $email, string $mesazhi): void {
         $stmt = $this->connection->prepare('INSERT INTO mesazhet (emri, email, mesazhi) VALUES (?, ?, ?)');
         $stmt->bind_param('sss', $emri, $email, $mesazhi);
@@ -16,9 +15,16 @@ class Message {
         $stmt->close();
     }
 
-    // Metoda për të parë mesazhet (përdoret te dashboard.php i adminit)
     public function all(): array {
         $result = $this->connection->query('SELECT * FROM mesazhet ORDER BY krijuar_me DESC');
         return $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
     }
+
+    public function delete(int $id): bool {
+    $stmt = $this->connection->prepare('DELETE FROM mesazhet WHERE id = ?');
+    $stmt->bind_param('i', $id);
+    $uFshi = $stmt->execute();
+    $stmt->close();
+    return $uFshi;
+}
 }

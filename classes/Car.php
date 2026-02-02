@@ -32,4 +32,22 @@ class Car
 
         return $car ?: null;
     }
+
+    public function create(string $emri, int $viti, string $kilometrat, string $foto, string $logo): bool 
+    {
+        $stmt = $this->connection->prepare('INSERT INTO makinat (emri, viti, kilometrat, foto, logo) VALUES (?, ?, ?, ?, ?)');
+        $stmt->bind_param('sisss', $emri, $viti, $kilometrat, $foto, $logo);
+        $result = $stmt->execute();
+        $stmt->close();
+        return $result;
+    }
+
+    public function delete(int $id): bool 
+    {
+        $stmt = $this->connection->prepare('DELETE FROM makinat WHERE id = ?');
+        $stmt->bind_param('i', $id);
+        $result = $stmt->execute();
+        $stmt->close();
+        return $result;
+    }
 }
