@@ -47,6 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Shto Makinë | Luxxo</title>
+    <link rel="icon" type="image/png" href="../img/car.png">
     <style>
         body { background: #0a0a0a; color: white; font-family: Arial; padding: 40px; }
         .form-container { max-width: 500px; margin: auto; background: #111; padding: 30px; border: 1px solid #DAA520; border-radius: 10px; }

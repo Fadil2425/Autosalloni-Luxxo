@@ -37,6 +37,7 @@ $total_users = $result->num_rows;
     <meta charset="UTF-8">
     <title>Menaxho Përdoruesit - Luxxo</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link rel="icon" type="image/png" href="../img/car.png">
     <style>
         :root { --gold: #DAA520; --dark: #0a0a0a; --card: #161616; }
         body { background: var(--dark); color: white; font-family: 'Segoe UI', sans-serif; padding: 40px; margin: 0; }

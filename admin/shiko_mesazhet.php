@@ -28,6 +28,7 @@ $mesazhet = $messageRepo->all();
 <head>
     <meta charset="UTF-8">
     <title>Mesazhet - Luxxo Admin</title>
+    <link rel="icon" type="image/png" href="../img/car.png">
     <style>
         body { background: #0a0a0a; color: white; font-family: sans-serif; padding: 30px; }
         table { width: 100%; border-collapse: collapse; background: #161616; border-radius: 10px; overflow: hidden; }

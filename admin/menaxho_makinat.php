@@ -27,6 +27,7 @@ $makinat = $carRepo->all();
 <head>
     <meta charset="UTF-8">
     <title>Menaxho Makinat - Luxxo</title>
+    <link rel="icon" type="image/png" href="../img/car.png">
     <style>
         body { background: #0a0a0a; color: white; font-family: 'Segoe UI', Arial, sans-serif; padding: 30px; }
         .header-container { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
