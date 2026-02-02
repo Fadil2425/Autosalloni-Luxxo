@@ -157,7 +157,7 @@ $seksionet = [
         ?>
     </div>
 
-    <footer class="footer">
+    <footer class="footer" style="background-image: url(../img/shfletoo.jpg); background-size: cover; background-position: center;">
     <div class="social-container">
 
         <div class="social-box">
