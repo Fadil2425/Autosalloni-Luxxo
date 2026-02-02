@@ -9,7 +9,6 @@ if (isset($_POST['register'])) {
     $db = new Database();
     $conn = $db->getConnection();
 
-    // Marrja e të dhënave nga forma
     $emri = $_POST['emri'];
     $mbiemri = $_POST['mbiemri'];
     $email = $_POST['email'];
@@ -18,15 +17,12 @@ if (isset($_POST['register'])) {
     $telefoni = $_POST['telefoni'];
     $qyteti = $_POST['qyteti'];
 
-    // KUSHTI PËR ROLIN
     $roli = str_ends_with($email, '@luxxo.com') ? 'admin' : 'user';
 
-    // 1. Kontrolli i fjalëkalimeve
     if ($password !== $confirm_password) {
         $mesazhiPHP = "Fjalëkalimet nuk përputhen!";
         $tipeMesazhi = "error";
     } else {
-        // 2. Kontrollojmë nëse emaili ekziston
         $checkEmail = $conn->prepare("SELECT email FROM user WHERE email = ?");
         $checkEmail->bind_param("s", $email);
         $checkEmail->execute();
@@ -36,7 +32,6 @@ if (isset($_POST['register'])) {
             $mesazhiPHP = "Ky email ekziston në sistem!";
             $tipeMesazhi = "error";
         } else {
-            // 3. Ruajtja në databazë (Plain Text siç kërkove)
             $sql = "INSERT INTO user (emri, mbiemri, email, password, telefoni, qyteti, roli) VALUES (?, ?, ?, ?, ?, ?, ?)";
             $stmt = $conn->prepare($sql);
             $stmt->bind_param("sssssss", $emri, $mbiemri, $email, $password, $telefoni, $qyteti, $roli);
@@ -129,8 +124,8 @@ if (isset($_POST['register'])) {
             } 
             else if (!regexEmri.test(emri) || !regexEmri.test(mbiemri)) {
                 e.preventDefault();
-                msg.innerText = "Emri dhe Mbiemri duhet te kene vetem shkronja!";
-            } 
+                msg.innerText = "Emri dhe Mbiemri duhet te kene vetem shkronja ose te jene me te gjate!";
+            }
             else if (!regexEmail.test(email)) {
                 e.preventDefault();
                 msg.innerText = "Email-i nuk eshte i vlefshem!";
@@ -147,7 +142,6 @@ if (isset($_POST['register'])) {
                 e.preventDefault();
                 msg.innerText = "Fjalekalimet nuk perputhen!";
             }
-            // Nëse s'ka gabime, JS e lejon formën të shkojë te PHP
         });
     </script>
 </body>
