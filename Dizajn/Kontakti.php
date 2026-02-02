@@ -294,11 +294,11 @@ footer p:hover{
             <div class="header" >
             <img src="../img/car.png" alt="" >
             <div class="menu">
-                <a  href="Ballina.html">Ballina</a>
-                <a  href="makinat.html">Makinat</a>
-                <a  href="RrethNesh.html">Rreth Nesh</a>
-                <a class="K" href="Kontakti.html">Kontakti</a>
-                <a href="profili.html">Profili</a>
+                <a  href="Ballina.php">Ballina</a>
+                <a  href="makinat.php">Makinat</a>
+                <a  href="RrethNesh.php">Rreth Nesh</a>
+                <a class="K" href="Kontakti.php">Kontakti</a>
+                <a href="profili.php">Profili</a>
             
             </div>
         </div>

@@ -1,3 +1,18 @@
+<?php
+    session_start();
+
+    // Nëse përdoruesi nuk është i kyçur, dërgoje te login
+    if (!isset($_SESSION['user_id'])) {
+        header("Location: logIn.php");
+        exit;
+    }
+
+    // Marrja e të dhënave nga Session (që i ruajtëm te logIn.php)
+    $emri = $_SESSION['emri'];
+    $email = $_SESSION['email'];
+    $roli = $_SESSION['roli'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -128,10 +143,9 @@
         <div class="profile-card">
             <img src="../img/car.png" alt="Logo">
             <div class="profile-info">
-                <h2>Filan Fisteku</h2>
-                <p class="email"><i class="fa-solid fa-envelope"></i> filan.fisteku@email.com</p>
-                <p><i class="fa-solid fa-location-dot"></i> Prishtine, Kosove</p>
-                <p><i class="fa-solid fa-phone"></i> +383 44 123 456</p>
+                <h2><?php echo $emri; ?></h2>
+                <p class="email"><i class="fa-solid fa-envelope"></i> <?php echo $email; ?></p>
+                <p><i class="fa-solid fa-user-tag"></i> Roli: <?php echo ucfirst($roli); ?></p>
             </div>
 
             <div class="stats">
@@ -143,17 +157,21 @@
 
             <a href="#" class="btn-edit">Edito Profilin</a>
             <br>
-            <a href="index.php" style="color: red; font-size: 13px; text-decoration: none; display: block; margin-top: 15px;">Çkyçu (Log Out)</a>
+            <a href="logout.php" style="color: #ff6b6b; font-size: 13px; text-decoration: none; display: block; margin-top: 15px; font-weight: bold;">
+            <i class="fa-solid fa-right-from-bracket"></i> Çkyçu (Log Out)
+            </a>
         </div>
     </div>
     <script>
         function shfaqFavoritet() {
-            const user = JSON.parse(localStorage.getItem("userKycur"));
-            if (!user) return;
+            // Marrim email-in direkt nga PHP
+            const userEmail = "<?php echo $email; ?>"; 
 
-            let favKey = "fav_" + user.email;
+            // Përdorim userEmail për të krijuar çelësin e saktë
+            let favKey = "fav_" + userEmail;
             let favoritet = JSON.parse(localStorage.getItem(favKey)) || [];
 
+            // Përditësojmë numrin te statistikat
             document.querySelector('.stat-box b').innerText = favoritet.length;
 
             let listaHTML = "";
@@ -162,34 +180,35 @@
                 listaHTML += `
                     <div style="display: flex; justify-content: space-between; padding: 10px; border-bottom: 1px solid #333;">
                         <span>${favoritet[i]}</span>
-                        <button onclick="largoNgaFavoritet(${i})" style="color: red; background: none; border: none; cursor: pointer;">Largo</button>
+                        <button onclick="largoNgaFavoritet(${i})" style="color: #ff6b6b; background: none; border: none; cursor: pointer; font-weight: bold;">Largo</button>
                     </div>
                 `;
             }
 
             if (favoritet.length === 0) {
-                listaHTML = "<p>Nuk keni asnje makine favorite.</p>";
+                listaHTML = "<p style='color: #888; margin-top: 10px;'>Nuk keni asnjë makinë favorite.</p>";
             }
 
             let divLista = document.getElementById('lista-fav-pastro');
             if (!divLista) {
                 divLista = document.createElement('div');
                 divLista.id = 'lista-fav-pastro';
+                divLista.style.marginTop = "20px";
+                divLista.style.textAlign = "left";
                 document.querySelector('.profile-card').appendChild(divLista);
             }
             divLista.innerHTML = listaHTML;
         }
 
         function largoNgaFavoritet(index) {
-            const user = JSON.parse(localStorage.getItem("userKycur"));
-            let favKey = "fav_" + user.email;
+            const userEmail = "<?php echo $email; ?>"; 
+            let favKey = "fav_" + userEmail;
             let favoritet = JSON.parse(localStorage.getItem(favKey)) || [];
 
             favoritet.splice(index, 1);
-
             localStorage.setItem(favKey, JSON.stringify(favoritet));
 
-            shfaqFavoritet();
+            shfaqFavoritet(); // Rifresko listën
         }
 
         window.onload = shfaqFavoritet;
